@@ -22,7 +22,7 @@ export default function ResearchPage() {
       <Nav />
 
       {/* Hero */}
-      <section style={{ padding: "64px 48px 56px", borderBottom: `1px solid ${v.border}` }}>
+      <section style={{ padding: "64px 24px 56px", borderBottom: `1px solid ${v.border}` }}>
         <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Independent AI Research</div>
         <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 600, color: v.navy, lineHeight: 1.1, marginBottom: 16 }}>
           Research funded by<br />the <em style={{ color: v.blue }}>question,</em><br />not the answer.
@@ -49,7 +49,7 @@ export default function ResearchPage() {
 
       {/* FA1 */}
       <div id="fa1" style={{ borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ background: v.bgSoft, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, borderBottom: `1px solid ${v.border}` }}>
+        <div className="pillar-header-grid" style={{ background: v.bgSoft, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, borderBottom: `1px solid ${v.border}` }}>
           <div>
             <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Focus Area 01</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 600, color: v.navy, lineHeight: 1.15, marginBottom: 16 }}>The Future Workforce</div>
@@ -74,7 +74,7 @@ export default function ResearchPage() {
         </div>
         <div style={{ padding: "40px 48px" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 24 }}>Forthcoming research — Focus Area 01</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
+          <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
             {[{ tag: "Future Workforce · India", badge: "Forthcoming 2025", bg: "#fef9e7", tc: "#8a6500", title: "AI & the Future of Work: India Report 2025", body: "The first comprehensive study of AI readiness across India's workforce — what the data actually shows about the gap between organizational AI ambition and workforce capability.", meta: "Flagship Report · Q4 2025", link: "Register for early access →" }, { tag: "Future Workforce · Methodology", badge: "Working Paper", bg: v.bluePale, tc: "#1a5276", title: "Measuring the AI Readiness Gap: A Framework for Organizations", body: "An independent diagnostic framework for measuring workforce AI readiness at the manager and director level.", meta: "Research Framework · Forthcoming 2025", link: "Download draft framework →" }, { tag: "Future Workforce · US/India", badge: "In development", bg: v.bluePale, tc: "#1a5276", title: "The Manager Layer: Why AI Transformation Succeeds or Fails in the Middle", body: "Case-based research on how AI deployment outcomes correlate with manager-level capability.", meta: "Sector Study · Forthcoming 2026", link: "Express research interest →" }].map((c) => (
               <a key={c.title} href="#" style={{ background: "#fff", padding: "28px 24px", textDecoration: "none", display: "block" }}>
                 <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 12 }}>{c.tag} <span style={{ background: c.bg, color: c.tc, fontSize: 10, padding: "2px 7px", fontWeight: 500, marginLeft: 4 }}>{c.badge}</span></div>
@@ -90,7 +90,7 @@ export default function ResearchPage() {
 
       {/* FA2 */}
       <div id="fa2" style={{ borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ background: "#fff", padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, borderBottom: `1px solid ${v.border}` }}>
+        <div className="pillar-header-grid" style={{ background: "#fff", padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, borderBottom: `1px solid ${v.border}` }}>
           <div>
             <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Focus Area 02</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 600, color: v.navy, lineHeight: 1.15, marginBottom: 16 }}>Responsible AI in Practice</div>
@@ -115,7 +115,7 @@ export default function ResearchPage() {
         </div>
         <div style={{ padding: "40px 48px" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 24 }}>Forthcoming research — Focus Area 02</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, background: v.bgRule }}>
+          <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, background: v.bgRule }}>
             {[{ badge: "Forthcoming 2025", bg: "#fef9e7", tc: "#8a6500", tag: "Responsible AI · Governance", title: "The Independent AI Governance Framework: A Practitioner's Guide", body: "A practical governance framework for enterprises deploying AI — independent of any vendor or platform. Designed for risk, legal, and compliance leaders.", meta: "Governance Framework · Q4 2025", link: "Register for early access →" }, { badge: "Working Paper", bg: v.bluePale, tc: "#1a5276", tag: "Responsible AI · Comparative", title: "EU AI Act, India Guidelines, US Blueprint: A Comparative Framework", body: "For enterprises operating across India, the US, and Europe — a comparative analysis of three regulatory approaches and their practical implications.", meta: "Comparative Study · Forthcoming 2025", link: "Register for early access →" }].map((c) => (
               <a key={c.title} href="#" style={{ background: "#fff", padding: "28px 24px", textDecoration: "none", display: "block" }}>
                 <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 12 }}>{c.tag} <span style={{ background: c.bg, color: c.tc, fontSize: 10, padding: "2px 7px", fontWeight: 500, marginLeft: 4 }}>{c.badge}</span></div>
@@ -131,7 +131,7 @@ export default function ResearchPage() {
 
       {/* FA3 */}
       <div id="fa3" style={{ borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ background: v.bgSoft, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, borderBottom: `1px solid ${v.border}` }}>
+        <div className="pillar-header-grid" style={{ background: v.bgSoft, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, borderBottom: `1px solid ${v.border}` }}>
           <div>
             <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Focus Area 03</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 600, color: v.navy, lineHeight: 1.15, marginBottom: 16 }}>Applied Sector Research</div>
@@ -156,7 +156,7 @@ export default function ResearchPage() {
         </div>
         <div style={{ padding: "40px 48px" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 24 }}>Forthcoming research — Focus Area 03</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
+          <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
             {[{ badge: "Forthcoming 2025", bg: "#fef9e7", tc: "#8a6500", tag: "Financial Services", title: "AI Adoption in Indian Banking: Where the Readiness Gap Is Largest", body: "An independent study of AI deployment across India's banking sector — what is working, where organizational readiness is failing.", meta: "Sector Report · Q4 2025", link: "Enquire about co-commissioning →" }, { badge: "Forthcoming 2025", bg: "#fef9e7", tc: "#8a6500", tag: "Healthcare", title: "Algorithmic Bias in Clinical AI: A Framework for Independent Assessment", body: "An independent methodology for evaluating AI deployment in clinical settings across India and the US.", meta: "Research Framework · Q4 2025", link: "Enquire about co-commissioning →" }, { badge: "In development", bg: v.bluePale, tc: "#1a5276", tag: "High-Tech", title: "The AI-Native Tech Company: How Leading Firms Are Rebuilding Their Operating Models", body: "How the highest-performing high-tech firms are redesigning engineering teams and talent models around AI as a core capability.", meta: "Sector Report · Forthcoming 2026", link: "Enquire about co-commissioning →" }].map((c) => (
               <a key={c.title} href="#" style={{ background: "#fff", padding: "28px 24px", textDecoration: "none", display: "block" }}>
                 <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 12 }}>{c.tag} <span style={{ background: c.bg, color: c.tc, fontSize: 10, padding: "2px 7px", fontWeight: 500, marginLeft: 4 }}>{c.badge}</span></div>
@@ -171,7 +171,7 @@ export default function ResearchPage() {
       </div>
 
       {/* Commission */}
-      <div id="commission" style={{ background: v.navy, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
+      <div id="commission" className="commission-grid" style={{ background: v.navy, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
         <div>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Commission Research</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 34, fontWeight: 600, color: "#fff", lineHeight: 1.25, marginBottom: 14 }}>Have a specific AI question your organization needs answered independently?</div>
@@ -190,7 +190,7 @@ export default function ResearchPage() {
       </div>
 
       {/* Fellows */}
-      <section id="fellows" style={{ padding: "64px 48px", borderBottom: `1px solid ${v.border}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, background: v.bgSoft }}>
+      <section id="fellows" className="two-col-grid" style={{ padding: "64px 48px", borderBottom: `1px solid ${v.border}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, background: v.bgSoft }}>
         <div>
           <SectionRule label="Research Fellows" />
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 34, fontWeight: 600, color: v.navy, marginBottom: 14, lineHeight: 1.25 }}>Build your research career at the frontier of AI.</div>

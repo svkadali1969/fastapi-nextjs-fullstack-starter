@@ -161,8 +161,7 @@ export default function HomePage() {
  
  
 {/* Focus Areas */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#e8edf2" }}>
-
+    <div className="focus-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#e8edf2" }}>
         {/* AI Research */}
         <div style={{ background: "#fff", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 500, marginBottom: 20 }}>AI Research</div>

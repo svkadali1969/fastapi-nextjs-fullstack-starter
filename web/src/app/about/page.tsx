@@ -22,7 +22,7 @@ export default function AboutPage() {
       <Nav />
 
       {/* Hero */}
-      <section style={{ padding: "64px 48px 72px", borderBottom: `1px solid ${v.border}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "end" }}>
+      <section className="two-col-grid" style={{ padding: "64px 48px 72px", borderBottom: `1px solid ${v.border}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "end" }}>
         <div>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>About The Verita</div>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 600, color: v.navy, lineHeight: 1.1 }}>
@@ -39,7 +39,7 @@ export default function AboutPage() {
 
       {/* Story */}
       <section style={{ padding: "80px 48px", borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 24 }}>Why The Verita exists.</div>
             <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.85, marginBottom: 16 }}>AI is the most consequential technology organizations have ever had to navigate. The decisions being made right now — about how to deploy it, how to govern it, how to prepare workforces for it — will define organizations for a decade.</p>
@@ -68,7 +68,7 @@ export default function AboutPage() {
 
       {/* Mission section */}
       <section style={{ background: v.navy, padding: "80px 48px", borderBottom: "1px solid #2a4a6a" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
             <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>Our mission</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 500, fontStyle: "italic", color: "#fff", lineHeight: 1.5, marginBottom: 28, paddingBottom: 28, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
@@ -99,7 +99,7 @@ export default function AboutPage() {
         </div>
 
         <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 24 }}>Founding team</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
+        <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
           {[{ initials: "FD", bg: v.bluePale, name: "Founder & Director", role: "Founding · India & US", bio: "The Verita's founder brings deep expertise in AI strategy, enterprise transformation, and the workforce challenges AI creates. Operating across India and the United States with a focus on building the intelligent enterprise." }, { initials: "AR", bg: "#eaf2ea", name: "Academic Research Director", role: "Hiring · PhD required", bio: "Leading The Verita's research agenda across all three focus areas. Responsible for research quality, publication standards, and academic partnerships. The single most important hire for the institute's credibility." }, { initials: "EP", bg: "#fef3e2", name: "Education Programs Director", role: "Hiring · India & US", bio: "Designing and delivering The Verita's enterprise cohort and executive education programs. Responsible for curriculum architecture, faculty relationships, and corporate client delivery." }].map((t) => (
             <div key={t.name} style={{ background: "#fff", padding: "32px 28px" }}>
               <div style={{ width: 56, height: 56, borderRadius: "50%", background: t.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: v.navy, marginBottom: 16 }}>{t.initials}</div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
         </div>
 
         <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginTop: 40, marginBottom: 24 }}>Advisory board — being constituted</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2, background: v.bgRule }}>
+        <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2, background: v.bgRule }}>
           {[{ initials: "AI", bg: v.bluePale, name: "AI Research Advisor", role: "Research · India", affil: "Senior AI researcher validating research methodology and publication standards." }, { initials: "PE", bg: "#eaf2ea", name: "Policy & Regulation Advisor", role: "Policy · India or US", affil: "Background in AI policy or government. Connects The Verita to policy conversations in both markets." }, { initials: "EA", bg: "#fef3e2", name: "Enterprise Advisor", role: "Industry · CHRO or CTO", affil: "Senior enterprise leader who has navigated AI transformation. Grounds the research agenda in organizational reality." }, { initials: "UA", bg: "#f0eeff", name: "University Partner Advisor", role: "Academic · India or US", affil: "Senior academic facilitating university research partnerships and joint publications." }].map((b) => (
             <div key={b.name} style={{ background: "#fff", padding: "22px 20px" }}>
               <div style={{ width: 40, height: 40, borderRadius: "50%", background: b.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 14, fontWeight: 600, color: v.navy, marginBottom: 12 }}>{b.initials}</div>
@@ -137,7 +137,7 @@ export default function AboutPage() {
 
       {/* Independence */}
       <section style={{ padding: "80px 48px", borderBottom: `1px solid ${v.border}`, background: v.bgSoft }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
             <SectionRule label="Our independence policy" />
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, marginBottom: 16, lineHeight: 1.2 }}>Independence is not a value. It is a structural commitment.</div>
@@ -158,7 +158,7 @@ export default function AboutPage() {
       {/* Contact */}
       <section id="contact" style={{ padding: "80px 48px", borderBottom: `1px solid ${v.border}` }}>
         <SectionRule label="Contact & locations" />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule, marginTop: 40 }}>
+        <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule, marginTop: 40 }}>
           {[{ label: "Research enquiries", title: "Commission or collaborate on research", body: "For commissioned research, research partnerships, policy engagement, or media enquiries about our research agenda.", email: "research@theverita.ai" }, { label: "Education enquiries", title: "Programs for your organization", body: "For enterprise cohort programs, executive education intensives, AI readiness assessments, or fellowship enquiries.", email: "education@theverita.ai" }, { label: "General & partnerships", title: "Everything else", body: "For founding research partner enquiries, university partnership discussions, press, and general correspondence.", email: "hello@theverita.ai" }].map((c) => (
             <div key={c.label} style={{ background: "#fff", padding: "32px 28px" }}>
               <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>{c.label}</div>
@@ -168,7 +168,7 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: v.bgRule, marginTop: 2 }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: v.bgRule, marginTop: 2 }}>
           {[{ country: "India", cities: "New Delhi · Mumbai", note: "Primary research and education operations. India-focused research agenda, enterprise program delivery, and government engagement." }, { country: "United States", cities: "New York · San Francisco", note: "US research partnerships, enterprise education delivery, and policy engagement with US government bodies and foundations." }].map((o) => (
             <div key={o.country} style={{ background: v.bgSoft, padding: "24px 28px" }}>
               <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 10 }}>{o.country}</div>

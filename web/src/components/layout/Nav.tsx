@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const NAV_LINKS = [
   { id: "research", label: "AI Research", href: "/research" },
@@ -10,37 +11,65 @@ const NAV_LINKS = [
   { id: "publications", label: "Publications", href: "/research#publications" },
 ];
 
-const ShieldSVG = () => (
-  <svg width="36" height="40" viewBox="0 0 72 80" fill="none">
-    <path d="M36 2L70 18V42Q70 62 52 72Q44 77 36 80Q28 77 20 72Q2 62 2 42V18Z" fill="#1a3a5c"/>
-    <path d="M36 8L64 22V42Q64 58 48 67Q40 71 36 74Q32 71 24 67Q8 58 8 42V22Z" fill="none" stroke="#5a9ad4" strokeWidth="1.5"/>
-    <path d="M20 28L36 58L52 28" fill="none" stroke="white" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M20 28L36 58L52 28" fill="none" stroke="#5a9ad4" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <line x1="28" y1="43" x2="44" y2="43" stroke="#5a9ad4" strokeWidth="3" strokeLinecap="round"/>
-  </svg>
-);
-
 export default function Nav() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 48px", borderBottom: "1px solid #e8edf2", position: "sticky", top: 0, background: "#fff", zIndex: 100 }}>
-      <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+    <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 24px", borderBottom: "1px solid #e8edf2", position: "sticky", top: 0, background: "#fff", zIndex: 100 }}>
+      
+      {/* Logo */}
+      <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
         <img src="/logo.png" alt="The Verita" style={{ height: 56, width: "auto" }} />
       </Link>
-      <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
+
+      {/* Desktop links */}
+      <div className="nav-desktop" style={{ display: "flex", gap: 24, alignItems: "center" }}>
         {NAV_LINKS.map((link) => {
           const isActive = pathname === link.href || pathname.startsWith(link.href.split("#")[0] + "/");
           return (
-            <Link key={link.id} href={link.href} style={{ fontSize: 13, color: isActive ? "#1a3a5c" : "#4a6a8a", textDecoration: "none", letterSpacing: 0.5, fontWeight: isActive ? 500 : 400, borderBottom: isActive ? "1.5px solid #2e75b6" : "1.5px solid transparent", paddingBottom: 2 }}>
+            <Link key={link.id} href={link.href} style={{ fontSize: 13, color: isActive ? "#1a3a5c" : "#4a6a8a", textDecoration: "none", letterSpacing: 0.5, fontWeight: isActive ? 500 : 400, borderBottom: isActive ? "1.5px solid #2e75b6" : "1.5px solid transparent", paddingBottom: 2, whiteSpace: "nowrap" }}>
               {link.label}
             </Link>
           );
         })}
+        <Link href="/about#contact" style={{ background: "#1a3a5c", color: "#fff", padding: "9px 18px", fontSize: 12, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, whiteSpace: "nowrap" }}>
+          Partner with us
+        </Link>
       </div>
-      <Link href="/about#contact" style={{ background: "#1a3a5c", color: "#fff", padding: "9px 22px", fontSize: 12, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
-        Partner with us
-      </Link>
+
+      {/* Mobile hamburger */}
+      <button
+        className="nav-mobile"
+        onClick={() => setMenuOpen(!menuOpen)}
+        style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "none", flexDirection: "column", gap: 5 }}
+        aria-label="Toggle menu"
+      >
+        <span style={{ width: 24, height: 2, background: "#1a3a5c", display: "block", transition: "transform 0.2s", transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
+        <span style={{ width: 24, height: 2, background: "#1a3a5c", display: "block", opacity: menuOpen ? 0 : 1, transition: "opacity 0.2s" }} />
+        <span style={{ width: 24, height: 2, background: "#1a3a5c", display: "block", transition: "transform 0.2s", transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
+      </button>
+
+      {/* Mobile menu dropdown */}
+      {menuOpen && (
+        <div className="nav-mobile" style={{ position: "absolute", top: "100%", left: 0, right: 0, background: "#fff", borderBottom: "1px solid #e8edf2", padding: "16px 24px", display: "flex", flexDirection: "column", gap: 0, zIndex: 200 }}>
+          {NAV_LINKS.map((link) => (
+            <Link key={link.id} href={link.href} onClick={() => setMenuOpen(false)} style={{ fontSize: 15, color: "#1a3a5c", textDecoration: "none", padding: "14px 0", borderBottom: "1px solid #f0f4f8", fontWeight: 400 }}>
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/about#contact" onClick={() => setMenuOpen(false)} style={{ background: "#1a3a5c", color: "#fff", padding: "14px 18px", fontSize: 13, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontWeight: 500, marginTop: 16, textAlign: "center" }}>
+            Partner with us
+          </Link>
+        </div>
+      )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .nav-desktop { display: none !important; }
+          .nav-mobile { display: flex !important; }
+        }
+      `}</style>
     </nav>
   );
 }

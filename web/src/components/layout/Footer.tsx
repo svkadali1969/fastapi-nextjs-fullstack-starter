@@ -34,7 +34,8 @@ const FOOTER_LINKS = {
 export default function Footer() {
   return (
     <>
-      <footer style={{ padding: "48px", borderTop: "1px solid #e8edf2", display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", gap: 40 }}>
+
+    <footer className="footer-grid" style={{ padding: "48px", borderTop: "1px solid #e8edf2", display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", gap: 40 }}>
         <div>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none" }}>
             <img src="/logo.png" alt="The Verita" style={{ height: 56, width: "auto" }} />
@@ -54,7 +55,7 @@ export default function Footer() {
           </div>
         ))}
       </footer>
-      <div style={{ padding: "20px 48px", borderTop: "1px solid #e8edf2", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ padding: "20px 24px", borderTop: "1px solid #e8edf2", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
         <span style={{ fontSize: 12, color: "#8a9aaa" }}>© 2025 The Verita Institute for AI Research</span>
         <span style={{ fontSize: 12, color: "#8a9aaa" }}>India · United States</span>
       </div>

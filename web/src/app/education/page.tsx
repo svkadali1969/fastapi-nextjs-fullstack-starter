@@ -38,7 +38,7 @@ export default function EducationPage() {
       {/* Problem section */}
       <section style={{ padding: "72px 48px", background: v.bgSoft, borderBottom: `1px solid ${v.border}` }}>
         <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 24 }}>The Problem We Are Solving</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 34, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 20 }}>AI transformation succeeds or fails at the manager and director level.</div>
             <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8, marginBottom: 16 }}>Not at the C-suite. The executives can commission the strategy. But it is the managers and directors who actually make AI work — or watch it stall. They are the ones who decide how to redesign team workflows, how to evaluate AI outputs, and how to lead teams through uncertainty.</p>
@@ -60,7 +60,7 @@ export default function EducationPage() {
       {/* Difference section */}
       <section style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}` }}>
         <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 40 }}>What makes The Verita different</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: v.bgRule }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: v.bgRule }}>
           <div style={{ background: "#fafafa", padding: "40px 36px" }}>
             <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", fontWeight: 500, color: "#9aaabb", marginBottom: 24 }}>Conventional AI training</div>
             {["Vendor-led or vendor-funded programs", "Technology-first — tools over strategy", "Built for technical teams or the C-suite", "Generic frameworks not grounded in research", "One-size programs regardless of sector", "No independence from commercial interests"].map((t) => (
@@ -101,7 +101,7 @@ export default function EducationPage() {
           pills: ["Grounded in Verita governance research", "India and US regulatory context", "Framework toolkit included", "Certificate of completion"],
         }].map((p) => (
           <div key={p.name} style={{ border: `1px solid ${v.border}`, marginBottom: 2, background: "#fff" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "start", padding: "32px 36px", gap: 32 }}>
+            <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "start", padding: "32px 36px", gap: 32 }}>
               <div>
                 <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 10 }}>{p.tag}</div>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 8 }}>{p.name}</div>
@@ -127,7 +127,7 @@ export default function EducationPage() {
       </section>
 
       {/* Assessment strip */}
-      <div id="assessment" style={{ background: v.navy, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
+      <div id="assessment" className="two-col-grid" style={{ background: v.navy, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
         <div>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Organizational Diagnostic</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 600, color: "#fff", lineHeight: 1.25, marginBottom: 12 }}>Not sure where your organization stands?<br />Start with an AI Readiness Assessment.</div>
@@ -142,7 +142,7 @@ export default function EducationPage() {
       {/* Why section */}
       <section style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}`, background: v.bgSoft }}>
         <SectionRule label="Why organizations choose The Verita" />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule, marginTop: 40 }}>
+        <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule, marginTop: 40 }}>
           {[{ title: "Research informs every program", body: "Our education programs are built from The Verita's own independent research — what is actually happening in organizations deploying AI at scale. Not from theory. Not from vendor case studies. From evidence." }, { title: "AI-first architecture — not AI-added", body: "Every program assumes AI is already in the room. We teach how to lead, govern, decide, and create value when AI is the permanent operating context. Legacy institutions cannot replicate this without rebuilding from scratch." }, { title: "Independent — no vendor agenda", body: "The Verita has no technology vendor relationships and no platform to sell. Our programs give participants frameworks to evaluate and govern any AI system — without a commercial agenda shaping what they learn." }].map((w) => (
             <div key={w.title} style={{ background: "#fff", padding: "32px 28px" }}>
               <div style={{ width: 36, height: 3, background: v.blue, marginBottom: 20 }} />
@@ -156,7 +156,7 @@ export default function EducationPage() {
       {/* Enquiry form */}
       <section id="enquiry" style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}` }}>
         <SectionRule label="Get in touch" />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, marginBottom: 16, lineHeight: 1.2 }}>Talk to us about your organization's AI education needs.</div>
             <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.75, marginBottom: 24 }}>Whether you are looking for an enterprise cohort for your management layer, an open enrollment intensive for your directors, a governance workshop for your risk team, or want to understand where your organization stands — we would like to hear from you.</p>

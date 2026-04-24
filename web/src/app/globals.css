@@ -129,4 +129,125 @@
     @apply font-sans;
     height: auto;
   }
+}/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero-section {
+    padding: 40px 24px 0 !important;
+  }
+  .hero-title {
+    font-size: 42px !important;
+  }
+  .chat-wrap {
+    max-width: 100% !important;
+  }
+
+  /* Focus panels */
+  .focus-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Two column grids → single column */
+  .two-col-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Three column grids → single column */
+  .three-col-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ticker */
+  .ticker-bar {
+    padding: 12px 24px !important;
+  }
+
+  /* General padding reduction */
+  .page-section {
+    padding: 40px 24px !important;
+  }
+
+  /* Pillar header grid */
+  .pillar-header-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Commission grid */
+  .commission-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer grid */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero-section {
+    padding: 40px 24px 0 !important;
+  }
+  .hero-title {
+    font-size: 42px !important;
+  }
+  .chat-wrap {
+    max-width: 100% !important;
+  }
+
+  /* Focus panels */
+  .focus-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Two column grids → single column */
+  .two-col-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Three column grids → single column */
+  .three-col-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ticker */
+  .ticker-bar {
+    padding: 12px 24px !important;
+  }
+
+  /* General padding reduction */
+  .page-section {
+    padding: 40px 24px !important;
+  }
+
+  /* Pillar header grid */
+  .pillar-header-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Commission grid */
+  .commission-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer grid */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
