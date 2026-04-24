@@ -26,7 +26,7 @@ export default function Nav() {
   return (
     <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 48px", borderBottom: "1px solid #e8edf2", position: "sticky", top: 0, background: "#fff", zIndex: 100 }}>
       <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-        <img src="/logo.png" alt="The Verita" style={{ height: 56, width: "auto" }} />
+        <img src="/logo.png" alt="The Verita" style={{ height: 80, width: "auto" }} />
       </Link>
       <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
         {NAV_LINKS.map((link) => {

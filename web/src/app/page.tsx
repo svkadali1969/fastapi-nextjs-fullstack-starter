@@ -96,8 +96,8 @@ export default function HomePage() {
           Truth in AI.
         </h1>
         <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto 36px" }}>
-          By providing <em style={{ fontStyle: "italic", color: "#2e75b6" }}>trusted research</em> and building{" "}
-          <em style={{ fontStyle: "italic", color: "#2e75b6" }}>AI-enabled workforces</em> — through independent research and education.
+          Providing <em style={{ fontStyle: "italic", color: "#2e75b6" }}>trusted insights  </em> and advancing{" "}
+          <em style={{ fontStyle: "italic", color: "#2e75b6" }}>AI-literate workforce</em> through independent research and future-ready education.
         </p>
 
         {/* Chat */}
