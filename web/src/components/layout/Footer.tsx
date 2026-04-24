@@ -37,7 +37,7 @@ export default function Footer() {
       <footer style={{ padding: "48px", borderTop: "1px solid #e8edf2", display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", gap: 40 }}>
         <div>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none" }}>
-            <img src="/logo.png" alt="The Verita" style={{ height: 80, width: "auto" }} />
+            <img src="/logo.png" alt="The Verita" style={{ height: 56, width: "auto" }} />
           </Link>
           <p style={{ fontSize: 12, color: "#6a7a8a", lineHeight: 1.6, marginTop: 12, maxWidth: 220 }}>
             Independent AI research and education for the workforce powering tomorrow's intelligent enterprise.
