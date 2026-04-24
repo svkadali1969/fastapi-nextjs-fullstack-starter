@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { id: "research", label: "AI Research", href: "/research" },
   { id: "education", label: "AI Education", href: "/education" },
   { id: "about", label: "About", href: "/about" },
-  { id: "fellows", label: "Fellows", href: "/about#fellows" },
+  { id: "fellows", label: "Fellows", href: "/fellows" },
   { id: "publications", label: "Publications", href: "/research#publications" },
 ];
 
