@@ -95,10 +95,9 @@ export default function HomePage() {
         <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 64, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.05, marginBottom: 16 }}>
           Truth in AI.
         </h1>
-        <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto 36px" }}>
-          Providing <em style={{ fontStyle: "italic", color: "#2e75b6" }}>trusted insights  </em> and advancing{" "}
-          <em style={{ fontStyle: "italic", color: "#2e75b6" }}>AI-literate workforce</em> through independent research and future-ready education.
-        </p>
+      <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto 36px" }}>
+          Advancing AI-literate workforces through independent research and future-ready education.
+      </p>
 
         {/* Chat */}
         <div style={{ maxWidth: 660, margin: "0 auto 18px" }}>
@@ -156,16 +155,48 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* Focus Areas */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", background: "#e8edf2", gap: 1 }}>
-        {FOCUS_AREAS.map((f) => (
-          <Link key={f.num} href={f.href} style={{ background: "#fff", padding: "36px 32px", textDecoration: "none", display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 10, letterSpacing: 3, color: "#5a8ab8", fontWeight: 500, marginBottom: 14, textTransform: "uppercase" }}>{f.num}</div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: "#1a3a5c", marginBottom: 12, lineHeight: 1.2 }}>{f.title}</div>
-            <div style={{ fontSize: 13, color: "#4a5568", lineHeight: 1.65, flex: 1, paddingBottom: 18 }}>{f.body}</div>
-            <span style={{ fontSize: 12, color: "#2e75b6", fontWeight: 500, borderTop: "1px solid #e8edf2", paddingTop: 14, display: "block", letterSpacing: 0.3 }}>{f.link}</span>
+ {/* Focus Areas */}
+ 
+ {/* Focus Areas Banner */}
+ 
+ 
+{/* Focus Areas */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#e8edf2" }}>
+
+        {/* AI Research */}
+        <div style={{ background: "#fff", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 500, marginBottom: 20 }}>AI Research</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
+            Beyond the Model: Who Is Asking the Harder Questions?
+          </div>
+          <p style={{ fontSize: 14, color: "#4a5568", lineHeight: 1.8, marginBottom: 24, flex: 1 }}>
+            The race to build better models is well funded. The harder question — how organizations leverage their real assets: their data, their people, their institutional knowledge — to create lasting, responsible business value from AI — is not. That is where The Verita&apos;s research agenda is focused. We study how organizations can capture value from AI in the near term while building toward the deeper transformation that long-term competitiveness will require. And we are honest about both horizons — including what it will eventually take to compete in a world where AI is at the core of every business system.
+          </p>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#2e75b6", marginBottom: 24, paddingTop: 20, borderTop: "1px solid #e8edf2" }}>
+            Near-term value. Long-term transformation. Independent research.
+          </div>
+          <Link href="/research" style={{ fontSize: 13, color: "#2e75b6", fontWeight: 500, textDecoration: "none", letterSpacing: 0.3 }}>
+            Read our research agenda →
           </Link>
-        ))}
+        </div>
+
+        {/* AI Education */}
+        <div style={{ background: "#f6f9fc", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 500, marginBottom: 20 }}>AI Education</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
+            Are We Educating Students for a World That No Longer Exists?
+          </div>
+          <p style={{ fontSize: 14, color: "#4a5568", lineHeight: 1.8, marginBottom: 24, flex: 1 }}>
+            Many institutions are still debating whether students should use AI at all. We think that&apos;s the wrong question. The right question is how AI gets integrated into learning — responsibly, critically, and in ways that prepare students for the world they will actually work in. The Verita&apos;s education research studies what curricula need to look like for the AI era: not AI as an add-on subject, but AI woven into how students learn, work, and are assessed every single day.
+          </p>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#2e75b6", marginBottom: 24, paddingTop: 20, borderTop: "1px solid #e8edf2" }}>
+            Not AI as a subject. AI as the environment.
+          </div>
+          <Link href="/education" style={{ fontSize: 13, color: "#2e75b6", fontWeight: 500, textDecoration: "none", letterSpacing: 0.3 }}>
+            Read our education research →
+          </Link>
+        </div>
+
       </div>
 
       {/* Ticker */}
