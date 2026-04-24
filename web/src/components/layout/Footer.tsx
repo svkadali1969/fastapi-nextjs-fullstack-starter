@@ -11,19 +11,19 @@ const SmallShield = () => (
 );
 
 const FOOTER_LINKS = {
-  Research: [
+  AI_Research: [
     { label: "Future Workforce", href: "/research#fa1" },
     { label: "Responsible AI", href: "/research#fa2" },
     { label: "Applied Sectors", href: "/research#fa3" },
     { label: "Publications", href: "/research#publications" },
   ],
-  Education: [
+  AI_Education: [
     { label: "Enterprise Cohorts", href: "/education#cohort" },
     { label: "Executive Intensives", href: "/education#intensive" },
     { label: "AI Readiness", href: "/education#assessment" },
     { label: "Fellows Program", href: "/about#fellows" },
   ],
-  Institute: [
+  AI_Institute: [
     { label: "About", href: "/about" },
     { label: "Leadership", href: "/about#team" },
     { label: "Partner with us", href: "/about#contact" },

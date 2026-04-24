@@ -3,8 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { id: "research", label: "Research", href: "/research" },
-  { id: "education", label: "Education", href: "/education" },
+  { id: "research", label: "AI Research", href: "/research" },
+  { id: "education", label: "AI Education", href: "/education" },
   { id: "about", label: "About", href: "/about" },
   { id: "fellows", label: "Fellows", href: "/about#fellows" },
   { id: "publications", label: "Publications", href: "/research#publications" },
