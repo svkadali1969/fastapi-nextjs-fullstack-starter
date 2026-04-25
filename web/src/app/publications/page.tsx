@@ -2,8 +2,10 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 
-export const metadata = { title: "Publications — The Verita Institute for AI Research" };
-
+export const metadata = {
+  title: "Publications — The Verita Institute for AI Research",
+  description: "A chronological record of The Verita's independent AI research publications across responsible AI, governance, and the future workforce.",
+};
 const v = { navy: "#1a3a5c", blue: "#2e75b6", blueLight: "#5a9ad4", bluePale: "#e6f0fb", bgSoft: "#f6f9fc", bgRule: "#e8edf2", textBody: "#4a5568", border: "#e8edf2" };
 
 const PUBLICATIONS = [

@@ -1,7 +1,11 @@
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 
-export const metadata = { title: "The Institute — The Verita Institute for AI Research" };
+
+export const metadata = {
+  title: "The Institute — The Verita Institute for AI Research",
+  description: "Meet the team building The Verita — an independent institute for AI research and education across India and the United States.",
+};
 
 const v = { navy: "#1a3a5c", blue: "#2e75b6", blueLight: "#5a9ad4", bluePale: "#e6f0fb", bgSoft: "#f6f9fc", bgRule: "#e8edf2", textBody: "#4a5568", border: "#e8edf2" };
 
