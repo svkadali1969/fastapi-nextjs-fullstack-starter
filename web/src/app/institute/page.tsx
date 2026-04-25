@@ -18,12 +18,6 @@ const ADVISORY = [
   { initials: "UA", bg: "#f0eeff", name: "University Partner Advisor", role: "Academic · India or US", body: "Senior academic facilitating university research partnerships and joint publications." },
 ];
 
-const PARTNERSHIPS = [
-  { title: "University Research Partners", body: "We are looking to establish joint research partnerships with universities across India and the United States. If your institution is interested in co-producing independent AI research, we would like to hear from you." },
-  { title: "Enterprise Research Partners", body: "Organizations that commission research with The Verita become founding research partners — gaining access to independent findings, named partnership, and co-publication options. A small number of founding partner slots remain open." },
-  { title: "Policy & Government Partners", body: "The Verita is actively seeking relationships with government bodies and policy organizations in India and the US interested in independent AI research to inform regulation and policy development." },
-];
-
 export default function InstitutePage() {
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#fff" }}>
@@ -43,8 +37,11 @@ export default function InstitutePage() {
             The Verita is at the founding stage. We are building a small, exceptional team of researchers, educators, and practitioners who share a commitment to independent inquiry and a belief that the AI era requires institutions willing to ask the questions others cannot.
           </p>
           <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.85 }}>
-            We are actively hiring for key roles, constituting our advisory board, and seeking founding partnerships with universities, enterprises, and policy organizations across India and the United States.
+            We are actively hiring for key roles and constituting our advisory board. If you want to build something that matters from the ground up — we want to hear from you.
           </p>
+          <div style={{ marginTop: 24 }}>
+            <a href="mailto:hello@theverita.ai" style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>Get in touch — hello@theverita.ai</a>
+          </div>
         </div>
       </section>
 
@@ -85,25 +82,6 @@ export default function InstitutePage() {
         </div>
         <div style={{ marginTop: 16, padding: "20px 28px", background: "#fff", borderLeft: `3px solid ${v.blue}` }}>
           <p style={{ fontSize: 13, color: v.textBody, lineHeight: 1.7 }}>Interested in joining the advisory board? Contact us at <a href="mailto:hello@theverita.ai" style={{ color: v.blue, textDecoration: "none", fontWeight: 500 }}>hello@theverita.ai</a></p>
-        </div>
-      </section>
-
-      {/* Partnerships */}
-      <section style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Partnerships</div>
-        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start", marginBottom: 40 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 500, color: v.navy, lineHeight: 1.2 }}>We are looking for founding partners.</div>
-          <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8 }}>The Verita is at an early and formative stage. The right founding partnerships — with universities, enterprises, and policy organizations — will shape the institute&apos;s research agenda and reach for years to come. We are actively seeking partners who share our commitment to independent AI research and education.</p>
-        </div>
-        <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule }}>
-          {PARTNERSHIPS.map((p) => (
-            <div key={p.title} style={{ background: "#fff", padding: "32px 28px" }}>
-              <div style={{ width: 36, height: 3, background: v.blue, marginBottom: 20 }} />
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 500, color: v.navy, marginBottom: 12, lineHeight: 1.3 }}>{p.title}</div>
-              <div style={{ fontSize: 13, color: v.textBody, lineHeight: 1.7, marginBottom: 20 }}>{p.body}</div>
-              <a href="mailto:hello@theverita.ai" style={{ fontSize: 13, color: v.blue, fontWeight: 500, textDecoration: "none" }}>Get in touch →</a>
-            </div>
-          ))}
         </div>
       </section>
 

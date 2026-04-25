@@ -3,13 +3,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+
 const NAV_LINKS = [
   { id: "research", label: "AI Research", href: "/research" },
   { id: "education", label: "AI Education", href: "/education" },
-  { id: "about", label: "About", href: "/about" },
+  { id: "publications", label: "Publications", href: "/publications" },
+  { id: "about", label: "Our Purpose", href: "/about" },
   { id: "institute", label: "The Institute", href: "/institute" },
   { id: "fellows", label: "Fellows", href: "/fellows" },
-  { id: "publications", label: "Publications", href: "/research#publications" },
+  { id: "partner", label: "Partner with us", href: "/partner" },
 ];
 
 
@@ -35,9 +37,6 @@ export default function Nav() {
             </Link>
           );
         })}
-        <Link href="/about#contact" style={{ background: "#1a3a5c", color: "#fff", padding: "9px 18px", fontSize: 12, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, whiteSpace: "nowrap" }}>
-          Partner with us
-        </Link>
       </div>
 
       {/* Mobile hamburger */}

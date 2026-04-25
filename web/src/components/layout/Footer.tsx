@@ -11,23 +11,22 @@ const SmallShield = () => (
 );
 
 const FOOTER_LINKS = {
-  AI_Research: [
-    { label: "Future Workforce", href: "/research#fa1" },
-    { label: "Responsible AI", href: "/research#fa2" },
-    { label: "Applied Sectors", href: "/research#fa3" },
-    { label: "Publications", href: "/research#publications" },
+  Research: [
+    { label: "AI Research", href: "/research" },
+    { label: "Publications", href: "/publications" },
+    { label: "Commission Research", href: "/research#commission" },
   ],
-  AI_Education: [
-    { label: "Enterprise Cohorts", href: "/education#cohort" },
-    { label: "Executive Intensives", href: "/education#intensive" },
-    { label: "AI Readiness", href: "/education#assessment" },
-    { label: "Fellows Program", href: "/about#fellows" },
+  Education: [
+    { label: "AI Education", href: "/education" },
+    { label: "AI Foundations Certificate", href: "/education#students" },
+    { label: "AI in Practice", href: "/education#workforce" },
+    { label: "Executive AI Leadership", href: "/education#leadership" },
   ],
-  AI_Institute: [
-    { label: "About", href: "/about" },
-    { label: "Leadership", href: "/about#team" },
-    { label: "Partner with us", href: "/about#contact" },
-    { label: "Contact", href: "/about#contact" },
+  Institute: [
+    { label: "Our Purpose", href: "/about" },
+    { label: "The Institute", href: "/institute" },
+    { label: "Fellows", href: "/fellows" },
+    { label: "Partner with us", href: "/partner" },
   ],
 };
 

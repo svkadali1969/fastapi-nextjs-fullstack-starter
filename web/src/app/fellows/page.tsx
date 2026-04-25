@@ -114,29 +114,6 @@ export default function FellowsPage() {
         </div>
       </section>
 
-      {/* Advisory board */}
-      <section style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}`, background: v.bgSoft }}>
-        <SectionRule label="Advisory Board" />
-        <div style={{ maxWidth: 640, marginBottom: 40 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 500, color: v.navy, marginBottom: 14 }}>Shaping the research agenda.</div>
-          <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8 }}>The Verita&apos;s advisory board brings together AI researchers, policy experts, enterprise leaders, and academic partners. The board is currently being constituted — we are actively seeking advisors who share our commitment to independent research.</p>
-        </div>
-        <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, background: v.bgRule }}>
-          {ADVISORY_ROLES.map((b) => (
-            <div key={b.name} style={{ background: "#fff", padding: "28px 28px", display: "flex", gap: 16, alignItems: "flex-start" }}>
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: b.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 500, color: v.navy, flexShrink: 0 }}>{b.initials}</div>
-              <div>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 500, color: v.navy, marginBottom: 3 }}>{b.name}</div>
-                <div style={{ fontSize: 11, color: v.blue, fontWeight: 500, letterSpacing: 0.3, marginBottom: 8 }}>{b.role}</div>
-                <div style={{ fontSize: 13, color: "#6a7a8a", lineHeight: 1.6 }}>{b.body}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ marginTop: 16, padding: "20px 28px", background: "#fff", borderLeft: `3px solid ${v.blue}` }}>
-          <p style={{ fontSize: 13, color: v.textBody, lineHeight: 1.7 }}>Interested in joining the advisory board? Contact us at <a href="mailto:fellows@theverita.ai" style={{ color: v.blue, textDecoration: "none", fontWeight: 500 }}>fellows@theverita.ai</a></p>
-        </div>
-      </section>
 
       {/* Why join */}
       <section style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}` }}>
