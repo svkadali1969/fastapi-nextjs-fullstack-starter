@@ -59,7 +59,7 @@ export default function FellowsPage() {
       <section className="two-col-grid" style={{ padding: "64px 48px 72px", borderBottom: `1px solid ${v.border}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end" }}>
         <div>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>The Verita Fellows Program</div>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 600, color: v.navy, lineHeight: 1.1 }}>
+          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 500, color: v.navy, lineHeight: 1.1 }}>
             Join the researchers asking the questions that matter.
           </h1>
         </div>
@@ -93,10 +93,10 @@ export default function FellowsPage() {
           {FELLOW_TYPES.map((f) => (
             <div key={f.name} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, background: v.bgSoft, padding: "36px 40px", alignItems: "start" }}>
               <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
-                <div style={{ width: 56, height: 56, borderRadius: "50%", background: f.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: v.navy, flexShrink: 0 }}>{f.initials}</div>
+                <div style={{ width: 56, height: 56, borderRadius: "50%", background: f.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 500, color: v.navy, flexShrink: 0 }}>{f.initials}</div>
                 <div>
                   <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 6 }}>{f.audience}</div>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: v.navy, marginBottom: 10, lineHeight: 1.2 }}>{f.name}</div>
+                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 500, color: v.navy, marginBottom: 10, lineHeight: 1.2 }}>{f.name}</div>
                   <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.7 }}>{f.body}</p>
                 </div>
               </div>
@@ -118,15 +118,15 @@ export default function FellowsPage() {
       <section style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}`, background: v.bgSoft }}>
         <SectionRule label="Advisory Board" />
         <div style={{ maxWidth: 640, marginBottom: 40 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 600, color: v.navy, marginBottom: 14 }}>Shaping the research agenda.</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 500, color: v.navy, marginBottom: 14 }}>Shaping the research agenda.</div>
           <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8 }}>The Verita&apos;s advisory board brings together AI researchers, policy experts, enterprise leaders, and academic partners. The board is currently being constituted — we are actively seeking advisors who share our commitment to independent research.</p>
         </div>
         <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, background: v.bgRule }}>
           {ADVISORY_ROLES.map((b) => (
             <div key={b.name} style={{ background: "#fff", padding: "28px 28px", display: "flex", gap: 16, alignItems: "flex-start" }}>
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: b.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 600, color: v.navy, flexShrink: 0 }}>{b.initials}</div>
+              <div style={{ width: 44, height: 44, borderRadius: "50%", background: b.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 500, color: v.navy, flexShrink: 0 }}>{b.initials}</div>
               <div>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600, color: v.navy, marginBottom: 3 }}>{b.name}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 500, color: v.navy, marginBottom: 3 }}>{b.name}</div>
                 <div style={{ fontSize: 11, color: v.blue, fontWeight: 500, letterSpacing: 0.3, marginBottom: 8 }}>{b.role}</div>
                 <div style={{ fontSize: 13, color: "#6a7a8a", lineHeight: 1.6 }}>{b.body}</div>
               </div>
@@ -145,7 +145,7 @@ export default function FellowsPage() {
           {[{ title: "Research that matters", body: "Contribute to independent research that enterprises, governments, and the public can trust. Your work will be cited, acted on, and published openly." }, { title: "India & United States network", body: "Access to enterprise partners, policy networks, and academic collaborators across both markets. The Verita operates at the intersection of two of the world's most important AI markets." }, { title: "Independence guaranteed", body: "No vendor relationships. No sponsored findings. Fellows publish what the evidence shows — not what any funder wants to hear. That is what makes The Verita's research credible." }].map((w) => (
             <div key={w.title} style={{ background: "#fff", padding: "32px 28px" }}>
               <div style={{ width: 36, height: 3, background: v.blue, marginBottom: 20 }} />
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, color: v.navy, marginBottom: 12, lineHeight: 1.3 }}>{w.title}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 500, color: v.navy, marginBottom: 12, lineHeight: 1.3 }}>{w.title}</div>
               <div style={{ fontSize: 13, color: v.textBody, lineHeight: 1.7 }}>{w.body}</div>
             </div>
           ))}
@@ -156,7 +156,7 @@ export default function FellowsPage() {
       <section style={{ background: v.navy, padding: "64px 48px" }}>
         <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Apply or enquire</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#fff", lineHeight: 1.25, marginBottom: 16 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 500, color: "#fff", lineHeight: 1.25, marginBottom: 16 }}>
             Ready to join the researchers asking the questions that matter?
           </div>
           <p style={{ fontSize: 14, color: "#a8c8e8", lineHeight: 1.75, marginBottom: 32 }}>

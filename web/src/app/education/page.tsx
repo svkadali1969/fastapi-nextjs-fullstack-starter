@@ -85,7 +85,7 @@ export default function EducationPage() {
 
         {/* Left — The Problem */}
         <div style={{ background: v.bgSoft, padding: "64px 48px", borderRight: `1px solid ${v.border}` }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 20 }}>The Problem</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 600, marginBottom: 20 }}>The Problem</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20, fontStyle: "italic" }}>
             &ldquo;The workforce AI needs does not exist yet. And the institutions responsible for building it are not moving fast enough.&rdquo;
           </div>
@@ -96,7 +96,7 @@ export default function EducationPage() {
 
         {/* Right — Verita Response */}
         <div style={{ background: "#fff", padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>The Verita Response</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 28 }}>
             Our education programs start from a position, not a question.
           </div>
@@ -123,7 +123,7 @@ export default function EducationPage() {
 
             {/* Left — The Problem */}
             <div style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "56px 48px", borderRight: `1px solid ${v.border}` }}>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 14 }}>{section.problemLabel} · {section.num}</div>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 600, marginBottom: 14 }}>{section.problemLabel} · {section.num}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16, fontStyle: "italic" }}>
                 &ldquo;{section.problemHeadline}&rdquo;
               </div>
@@ -132,12 +132,12 @@ export default function EducationPage() {
 
             {/* Right — Our Program */}
             <div style={{ background: index % 2 === 0 ? v.bgSoft : "#fff", padding: "56px 48px" }}>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>{section.programLabel} · {section.audience}</div>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 14 }}>{section.programLabel} · {section.audience}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 8 }}>{section.programName}</div>
               <p style={{ fontSize: 13, color: "#6a7a8a", lineHeight: 1.6, marginBottom: 24, fontStyle: "italic" }}>{section.programSub}</p>
 
               {/* Modules */}
-              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 12 }}>Program modules</div>
+              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 600, marginBottom: 12 }}>Program modules</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: section.specializations.length > 0 ? 24 : 16 }}>
                 {section.modules.map((m) => (
                   <div key={m} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "12px 16px", borderLeft: `3px solid ${v.blue}`, display: "flex", alignItems: "center", gap: 10 }}>
@@ -150,7 +150,7 @@ export default function EducationPage() {
               {/* Functional specializations */}
               {section.specializations.length > 0 && (
                 <>
-                  <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 12 }}>Functional specializations</div>
+                  <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 600, marginBottom: 12 }}>Functional specializations</div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 16 }}>
                     {section.specializations.map((s) => (
                       <div key={s} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "12px 16px", borderLeft: `3px solid ${v.blueLight}`, display: "flex", alignItems: "center", gap: 10 }}>
@@ -181,7 +181,7 @@ export default function EducationPage() {
       <section id="enquiry" style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}` }}>
         <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
-            <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Get in touch</div>
+            <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 16 }}>Get in touch</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, marginBottom: 16, lineHeight: 1.2 }}>Talk to us about your AI education needs.</div>
             <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.75, marginBottom: 24 }}>Whether you are a university exploring curriculum redesign, an organization building AI capability in your workforce, or a leadership team seeking to strengthen AI decision-making — we would like to hear from you.</p>
             {["education@theverita.ai", "India — New Delhi & Mumbai", "United States — New York & San Francisco", "Response within 2 business days"].map((d) => (
@@ -201,12 +201,12 @@ export default function EducationPage() {
               <>
                 {[{ label: "Your name", key: "name", placeholder: "Full name" }, { label: "Organization", key: "org", placeholder: "Company or institution" }, { label: "Your role", key: "role", placeholder: "e.g. CHRO, Dean, Head of L&D" }].map((f) => (
                   <div key={f.key} style={{ marginBottom: 16 }}>
-                    <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>{f.label}</label>
+                    <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>{f.label}</label>
                     <input type="text" placeholder={f.placeholder} value={formData[f.key as keyof typeof formData]} onChange={(e) => setFormData({ ...formData, [f.key]: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", boxSizing: "border-box" as const }} />
                   </div>
                 ))}
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>I am enquiring about</label>
+                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>I am enquiring about</label>
                   <select value={formData.interest} onChange={(e) => setFormData({ ...formData, interest: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", appearance: "none" as const }}>
                     <option>AI Foundations Certificate — aspiring students</option>
                     <option>AI in Practice — experienced workforce</option>
@@ -216,10 +216,10 @@ export default function EducationPage() {
                   </select>
                 </div>
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>Message</label>
+                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>Message</label>
                   <textarea rows={3} placeholder="Tell us about your organization and what you are trying to achieve" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", resize: "vertical", boxSizing: "border-box" as const }} />
                 </div>
-                <button onClick={() => setSubmitted(true)} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, width: "100%", marginTop: 8 }}>Send enquiry</button>
+                <button onClick={() => setSubmitted(true)} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, width: "100%", marginTop: 8 }}>Send enquiry</button>
                 <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 10, lineHeight: 1.5 }}>Your information is held in strict confidence and will not be shared with third parties.</div>
               </>
             )}

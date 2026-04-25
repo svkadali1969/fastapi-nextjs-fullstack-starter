@@ -92,7 +92,7 @@ export default function HomePage() {
         <p style={{ fontSize: 10, letterSpacing: 3.5, textTransform: "uppercase", color: "#5a8ab8", fontWeight: 500, marginBottom: 18 }}>
           Independent AI Research &amp; Education
         </p>
-        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 64, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.05, marginBottom: 16 }}>
+        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 64, fontWeight: 500, color: "#1a3a5c", lineHeight: 1.05, marginBottom: 16 }}>
           Truth in AI.
         </h1>
       <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto 36px" }}>
@@ -106,7 +106,7 @@ export default function HomePage() {
               <div style={{ padding: "18px 22px 0", maxHeight: 220, overflowY: "auto", display: "flex", flexDirection: "column", gap: 10 }}>
                 {messages.map((m, i) => (
                   <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", flexDirection: m.role === "user" ? "row-reverse" : "row" }}>
-                    <div style={{ width: 26, height: 26, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 600, marginTop: 2, background: m.role === "user" ? "#1a3a5c" : "#e6f0fb", color: m.role === "user" ? "#fff" : "#2e75b6" }}>
+                    <div style={{ width: 26, height: 26, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 500, marginTop: 2, background: m.role === "user" ? "#1a3a5c" : "#e6f0fb", color: m.role === "user" ? "#fff" : "#2e75b6" }}>
                       {m.role === "user" ? "You" : "V"}
                     </div>
                     <div style={{ maxWidth: "80%", padding: "9px 13px", fontSize: 13, lineHeight: 1.6, background: m.role === "user" ? "#1a3a5c" : "#f0f5fa", color: m.role === "user" ? "#fff" : "#1a1a1a", borderLeft: m.role === "ai" ? "3px solid #2e75b6" : "none" }}>
@@ -116,7 +116,7 @@ export default function HomePage() {
                 ))}
                 {thinking && (
                   <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                    <div style={{ width: 26, height: 26, borderRadius: "50%", background: "#e6f0fb", color: "#2e75b6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 600 }}>V</div>
+                    <div style={{ width: 26, height: 26, borderRadius: "50%", background: "#e6f0fb", color: "#2e75b6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 500 }}>V</div>
                     <div style={{ padding: "9px 13px", background: "#f0f5fa", borderLeft: "3px solid #2e75b6" }}>
                       <span style={{ color: "#2e75b6", fontSize: 13 }}>Thinking…</span>
                     </div>
@@ -165,7 +165,7 @@ export default function HomePage() {
         {/* AI Research */}
         <div style={{ background: "#fff", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 500, marginBottom: 20 }}>AI Research</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 500, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
             Beyond the Model: Who Is Asking the Harder Questions?
           </div>
           <p style={{ fontSize: 14, color: "#4a5568", lineHeight: 1.8, marginBottom: 24, flex: 1 }}>
@@ -182,7 +182,7 @@ export default function HomePage() {
         {/* AI Education */}
         <div style={{ background: "#f6f9fc", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 500, marginBottom: 20 }}>AI Education</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 500, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
             Are We Educating Students for a World That No Longer Exists?
           </div>
           <p style={{ fontSize: 14, color: "#4a5568", lineHeight: 1.8, marginBottom: 24, flex: 1 }}>

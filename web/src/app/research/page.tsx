@@ -10,7 +10,7 @@ function SectionRule({ label }: { label: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
       <div style={{ flex: 1, height: 1, background: v.border }} />
-      <span style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: v.blueLight, fontWeight: 500, whiteSpace: "nowrap" as const }}>{label}</span>
+      <span style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: v.blueLight, fontWeight: 600, whiteSpace: "nowrap" as const }}>{label}</span>
       <div style={{ flex: 1, height: 1, background: v.border }} />
     </div>
   );
@@ -102,7 +102,7 @@ function StatusBadge({ status }: { status: string }) {
   };
   const s = styles[status];
   return (
-    <span style={{ background: s.bg, color: s.color, fontSize: 10, padding: "2px 8px", fontWeight: 500, letterSpacing: 0.5, whiteSpace: "nowrap" as const }}>
+    <span style={{ background: s.bg, color: s.color, fontSize: 10, padding: "2px 8px", fontWeight: 600, letterSpacing: 0.5, whiteSpace: "nowrap" as const }}>
       {s.label}
     </span>
   );
@@ -118,7 +118,7 @@ export default function ResearchPage() {
 
         {/* Left — Market Reality with stats */}
         <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Market Reality</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>The Market Reality</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 32 }}>
             The AI investment is happening.<br />The results are not.
           </div>
@@ -135,7 +135,7 @@ export default function ResearchPage() {
 
         {/* Right — Verita Response */}
         <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>The Verita Response</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 28 }}>
             The model race is won.<br />The harder work<br />starts now.
           </div>
@@ -158,7 +158,7 @@ export default function ResearchPage() {
 
             {/* Left — The Problem */}
             <div style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "56px 48px", borderRight: `1px solid ${v.border}` }}>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 14 }}>{pillar.problemLabel} · {pillar.num}</div>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 600, marginBottom: 14 }}>{pillar.problemLabel} · {pillar.num}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16, fontStyle: "italic" }}>
                 &ldquo;{pillar.problemHeadline}&rdquo;
               </div>
@@ -167,10 +167,10 @@ export default function ResearchPage() {
 
             {/* Right — Our Research */}
             <div style={{ background: index % 2 === 0 ? v.bgSoft : "#fff", padding: "56px 48px" }}>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>{pillar.responseLabel} · {pillar.num}</div>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 14 }}>{pillar.responseLabel} · {pillar.num}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16 }}>{pillar.responseHeadline}</div>
               <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>{pillar.responseBody}</p>
-              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 14 }}>Research output</div>
+              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 600, marginBottom: 14 }}>Research output</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 {pillar.research.map((r) => (
                   <div key={r.title} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "14px 18px", borderLeft: `3px solid ${r.status === "published" ? "#0f6e3a" : r.status === "forthcoming" ? "#c8a020" : v.blue}` }}>
@@ -191,16 +191,16 @@ export default function ResearchPage() {
       {/* Commission strip */}
       <div id="commission" className="two-col-grid" style={{ background: v.navy, padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
         <div>
-          <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Commission Research</div>
+          <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 14 }}>Commission Research</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 34, fontWeight: 600, color: "#fff", lineHeight: 1.25, marginBottom: 14 }}>Have a specific AI question your organization needs answered independently?</div>
           <p style={{ fontSize: 14, color: "#a8c8e8", lineHeight: 1.75, marginBottom: 24 }}>The Verita takes on a small number of commissioned research engagements each quarter. You fund the question. We produce the answer the market can trust.</p>
-          <Link href="/about#contact" style={{ background: "#fff", color: v.navy, padding: "13px 28px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>Discuss a research brief</Link>
+          <Link href="/about#contact" style={{ background: "#fff", color: v.navy, padding: "13px 28px", fontSize: 13, textDecoration: "none", fontWeight: 600, display: "inline-block" }}>Discuss a research brief</Link>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {[{ step: "Step 01", title: "Submit a research brief", body: "Tell us your question, your focus area, and what you need to understand." }, { step: "Step 02", title: "We scope and agree terms", body: "We propose a methodology and timeline. Independence of findings is non-negotiable." }, { step: "Step 03", title: "Research and publication", body: "Commissioning partners receive early access, named partnership, and co-publication option." }].map((s) => (
             <div key={s.step} style={{ background: "rgba(255,255,255,0.06)", padding: "20px 22px", borderLeft: `2px solid ${v.blueLight}`, marginBottom: 2 }}>
-              <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 7 }}>{s.step}</div>
-              <div style={{ fontSize: 14, fontWeight: 500, color: "#e8f2fc", marginBottom: 4 }}>{s.title}</div>
+              <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 7 }}>{s.step}</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "#e8f2fc", marginBottom: 4 }}>{s.title}</div>
               <div style={{ fontSize: 13, color: "#7aaac8", lineHeight: 1.55 }}>{s.body}</div>
             </div>
           ))}

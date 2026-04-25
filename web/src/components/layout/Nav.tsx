@@ -7,9 +7,11 @@ const NAV_LINKS = [
   { id: "research", label: "AI Research", href: "/research" },
   { id: "education", label: "AI Education", href: "/education" },
   { id: "about", label: "About", href: "/about" },
+  { id: "institute", label: "The Institute", href: "/institute" },
   { id: "fellows", label: "Fellows", href: "/fellows" },
   { id: "publications", label: "Publications", href: "/research#publications" },
 ];
+
 
 export default function Nav() {
   const pathname = usePathname();

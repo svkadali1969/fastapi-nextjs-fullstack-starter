@@ -42,7 +42,7 @@ export default function AboutPage() {
               <div key={p.num} style={{ background: "rgba(255,255,255,0.06)", padding: "20px 24px", borderLeft: `3px solid ${v.blueLight}` }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                   <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 13, color: v.blueLight, fontWeight: 500 }}>{p.num}</span>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: "#fff", letterSpacing: 0.5 }}>{p.title}</span>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: "#fff", letterSpacing: 0.5 }}>{p.title}</span>
                 </div>
                 <div style={{ fontSize: 13, color: "#a8c8e8", lineHeight: 1.65 }}>{p.body}</div>
               </div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
         {/* Right — Who We Are */}
         <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>About The Verita</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 24 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 500, color: v.navy, lineHeight: 1.2, marginBottom: 24 }}>
             Independent.<br />By design.<br />By necessity.
           </div>
           <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.85, marginBottom: 20 }}>
@@ -70,14 +70,14 @@ export default function AboutPage() {
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
         <div style={{ background: "#fff", padding: "64px 48px", borderRight: `1px solid ${v.border}` }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>Our Mission</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 600, color: v.navy, lineHeight: 1.3, marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 500, color: v.navy, lineHeight: 1.3, marginBottom: 20 }}>
             Through independent AI research and education, The Verita equips organizations, institutions, and individuals with the insight and capability to lead responsibly in an AI-driven world.
           </div>
           <div style={{ width: 48, height: 3, background: v.blue }} />
         </div>
         <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>Our Vision</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 600, color: v.navy, lineHeight: 1.3, marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 500, color: v.navy, lineHeight: 1.3, marginBottom: 20 }}>
             A world where AI is deployed responsibly, workforces are genuinely prepared, and the research informing those decisions can be trusted unconditionally.
           </div>
           <div style={{ width: 48, height: 3, background: v.blueLight }} />
@@ -89,7 +89,7 @@ export default function AboutPage() {
         <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
             <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>Our Independence</div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20 }}>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 500, color: v.navy, lineHeight: 1.2, marginBottom: 20 }}>
               Independence is not a value. It is a structural commitment.
             </div>
             <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.85 }}>
@@ -99,7 +99,7 @@ export default function AboutPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {COMMITMENTS.map((c) => (
               <div key={c.num} style={{ background: v.bgSoft, padding: "20px 24px", borderLeft: `3px solid ${v.blue}`, display: "flex", gap: 16, alignItems: "flex-start" }}>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: v.blue, flexShrink: 0, lineHeight: 1, width: 28 }}>{c.num}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 500, color: v.blue, flexShrink: 0, lineHeight: 1, width: 28 }}>{c.num}</div>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 500, color: v.navy, marginBottom: 4 }}>{c.title}</div>
                   <div style={{ fontSize: 13, color: v.textBody, lineHeight: 1.6 }}>{c.body}</div>
@@ -113,7 +113,7 @@ export default function AboutPage() {
       {/* Contact */}
       <section id="contact" style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}`, background: v.bgSoft }}>
         <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Contact</div>
-        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, marginBottom: 40, lineHeight: 1.2 }}>Get in touch.</div>
+        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 500, color: v.navy, marginBottom: 40, lineHeight: 1.2 }}>Get in touch.</div>
         <div className="three-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: v.bgRule, marginBottom: 2 }}>
           {CONTACTS.map((c) => (
             <div key={c.label} style={{ background: "#fff", padding: "32px 28px" }}>
@@ -127,7 +127,7 @@ export default function AboutPage() {
           {[{ country: "India", cities: "New Delhi · Mumbai", note: "Primary research and education operations. India-focused research agenda, enterprise program delivery, and government engagement." }, { country: "United States", cities: "New York · San Francisco", note: "US research partnerships, enterprise education delivery, and policy engagement with US government bodies and foundations." }].map((o) => (
             <div key={o.country} style={{ background: "#fff", padding: "24px 28px" }}>
               <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 10 }}>{o.country}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600, color: v.navy, marginBottom: 8 }}>{o.cities}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 500, color: v.navy, marginBottom: 8 }}>{o.cities}</div>
               <div style={{ fontSize: 13, color: "#6a7a8a", lineHeight: 1.6 }}>{o.note}</div>
             </div>
           ))}
