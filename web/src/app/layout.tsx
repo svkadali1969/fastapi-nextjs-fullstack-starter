@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Starter Kit — FastAPI + Next.js",
-  description: "A production-ready full-stack starter template for Railway",
+  title: "The Verita — Independent AI Research & Education",
+  description: "Independent AI research and education. Advancing AI-literate workforces through independent research and future-ready education.",
+  verification: {
+    google: "-Wj8apcU5c0URwdDpLn4kM_-UZ4Aj9GTFyLWlWY_rgI",
+  },
 };
 
 export default function RootLayout({
