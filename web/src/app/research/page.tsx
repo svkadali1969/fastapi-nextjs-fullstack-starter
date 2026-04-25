@@ -6,23 +6,56 @@ export const metadata = { title: "Research — The Verita Institute for AI Resea
 
 const v = { navy: "#1a3a5c", blue: "#2e75b6", blueLight: "#5a9ad4", bluePale: "#e6f0fb", bgSoft: "#f6f9fc", bgRule: "#e8edf2", textBody: "#4a5568", border: "#e8edf2" };
 
+function SectionRule({ label }: { label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
+      <div style={{ flex: 1, height: 1, background: v.border }} />
+      <span style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: v.blueLight, fontWeight: 500, whiteSpace: "nowrap" as const }}>{label}</span>
+      <div style={{ flex: 1, height: 1, background: v.border }} />
+    </div>
+  );
+}
+
 const STATS = [
+  { num: "87%", label: "of executives say AI is deploying faster than their workforce is ready for it", source: "McKinsey Global Survey, 2024" },
   { num: "74%", label: "of organizations have no formal AI governance framework in place", source: "Gartner, 2024" },
   { num: "85%", label: "of AI projects fail due to poor data quality, incomplete data infrastructure, or misaligned data governance", source: "Gartner, 2024" },
   { num: "40%", label: "of current job skills will be disrupted within 3 years", source: "World Economic Forum, 2023" },
 ];
 
+const RESPONSE_BULLETS = [
+  {
+    label: "Our Independence Research",
+    body: "No vendor relationships. No sponsored findings. All policy research published openly. The Verita research is focused on three pillars where independent inquiry is most needed and least available.",
+    color: v.blue,
+  },
+  {
+    label: "Pillar 01 — Responsible AI",
+    body: "We study what it takes to build responsible AI as a genuine organizational capability — across fairness, transparency, accountability, safety, and human oversight.",
+    color: v.blueLight,
+  },
+  {
+    label: "Pillar 02 — AI Governance",
+    body: "We study the governance frameworks organizations can build today — before regulators force the issue — that create resilience and competitive advantage.",
+    color: v.blueLight,
+  },
+  {
+    label: "Pillar 03 — Future Workforce",
+    body: "We study what genuinely AI-native learning looks like — from curriculum redesign to workforce transformation at organizational scale.",
+    color: v.blueLight,
+  },
+];
+
 const PILLARS = [
   {
     id: "fa1",
-    num: "Research Pillar 01",
-    title: "Responsible AI — The Five Pillars",
-    body: "Responsible AI is not a checklist. It is an organizational capability built across five dimensions: fairness, transparency, accountability, safety, and human oversight. Most organizations are addressing one or two. Our research studies what it actually takes to build all five — and what happens to organizations that don't.",
-    questions: [
-      "What does a mature responsible AI capability look like across all five dimensions — and how do organizations get there?",
-      "How do fairness and transparency requirements differ across sectors and regulatory environments?",
-      "What governance structures most effectively embed responsible AI into daily organizational decision-making?",
-    ],
+    num: "Responsible AI",
+    problemLabel: "The Problem",
+    problemHeadline: "Most organizations treat responsible AI as a compliance exercise. It is not.",
+    problemBody: "Responsible AI requires capability across five dimensions — fairness, transparency, accountability, safety, and human oversight. Most organizations are addressing one or two, usually under regulatory pressure. The rest is ignored until something goes wrong. The result is AI deployment that creates legal, reputational, and operational risk that most boards do not yet understand.",
+    responseLabel: "Our Research",
+    responseHeadline: "Responsible AI — The Five Pillars",
+    responseBody: "We study what it actually takes to build responsible AI as an organizational capability — not a checklist. Our research examines what mature responsible AI looks like across all five dimensions and how organizations get there.",
     research: [
       { title: "The Independent AI Governance Framework: A Practitioner's Guide", status: "forthcoming", date: "Q4 2025" },
       { title: "EU AI Act, India Guidelines, US Blueprint: A Comparative Framework", status: "forthcoming", date: "Q4 2025" },
@@ -31,14 +64,13 @@ const PILLARS = [
   },
   {
     id: "fa2",
-    num: "Research Pillar 02",
-    title: "AI Governance for Sustainability — Not Regulation",
-    body: "Waiting for regulation to drive AI governance is not a strategy — it is a risk. Our research focuses on the governance frameworks organizations can build today that will hold up under tomorrow's regulation, and that create genuine competitive advantage in the meantime. Sustainable AI governance is not about compliance. It is about organizational resilience.",
-    questions: [
-      "What governance frameworks are most effective at managing AI risk without blocking AI value creation?",
-      "How do organizations build governance that is durable across changing regulatory landscapes in India, the US, and the EU?",
-      "What is the relationship between AI governance maturity and long-term organizational performance?",
-    ],
+    num: "AI Governance",
+    problemLabel: "The Problem",
+    problemHeadline: "Organizations are waiting for regulation to tell them what to do. That is the wrong strategy.",
+    problemBody: "The regulatory landscape is fragmented, slow, and inconsistent across India, the US, and the EU. Organizations that wait for regulation to drive their governance decisions are taking on risk they cannot see yet. When regulation arrives — and it will — those without frameworks already in place will face disruption, not just compliance costs.",
+    responseLabel: "Our Research",
+    responseHeadline: "AI Governance for Sustainability — Not Regulation",
+    responseBody: "We study the governance frameworks organizations can build today that will hold up under tomorrow's regulation — and that create genuine competitive advantage in the meantime. Sustainable AI governance is not about compliance. It is about organizational resilience.",
     research: [
       { title: "Building AI Governance Before the Regulator Arrives", status: "forthcoming", date: "Q4 2025" },
       { title: "AI Governance Maturity Index: India & United States", status: "future", date: "2026" },
@@ -47,14 +79,13 @@ const PILLARS = [
   },
   {
     id: "fa3",
-    num: "Research Pillar 03",
-    title: "Future Workforce — The Curriculum Is Decades Old",
-    body: "The methods we use to educate and train the workforce were designed for a different economy. Our research studies what innovative learning models look like for the AI era — not AI added to existing curricula, but fundamentally new approaches to how people learn, qualify, and stay relevant. The four-year degree in its current form was not built for this.",
-    questions: [
-      "What does a curriculum genuinely built for the AI era look like — and how different is it from what exists today?",
-      "How do organizations build AI-ready workforces at the speed and scale the transition requires?",
-      "What capabilities distinguish AI-ready managers and leaders — and can they be systematically developed?",
-    ],
+    num: "Future Workforce",
+    problemLabel: "The Problem",
+    problemHeadline: "The education system was not built for this. Neither was most corporate training.",
+    problemBody: "The four-year degree was designed for a different economy. Corporate L&D programs add AI as a module to existing frameworks. Neither approach produces the AI-ready workforce organizations actually need. The gap between AI ambition and workforce capability is widening — and most institutions are responding too slowly and too incrementally.",
+    responseLabel: "Our Research",
+    responseHeadline: "Future Workforce — The Curriculum Is Decades Old",
+    responseBody: "We study what genuinely AI-native learning looks like — from curriculum design to workforce transformation. Not AI added to existing programs. Fundamentally new approaches to how people learn, qualify, and stay relevant in the AI era.",
     research: [
       { title: "AI & the Future of Work: India Report 2025", status: "forthcoming", date: "Q4 2025" },
       { title: "Redesigning the Curriculum for the AI Era", status: "future", date: "2026" },
@@ -82,71 +113,72 @@ export default function ResearchPage() {
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#fff" }}>
       <Nav />
 
-      {/* Hero — two column */}
-      <section className="two-col-grid" style={{ padding: "64px 48px 56px", borderBottom: `1px solid ${v.border}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start" }}>
+      {/* Hero — problem left / response right */}
+      <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
 
-        {/* Left */}
-        <div>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>Independent AI Research</div>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, fontWeight: 600, color: v.navy, lineHeight: 1.1, marginBottom: 20 }}>
-            The model race is won.<br />The harder work<br />starts now.
-          </h1>
-          <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8, marginBottom: 28, maxWidth: 480 }}>
-            The most consequential AI research today is not about building better models. The models exist. The harder questions — how organizations responsibly leverage their assets to create lasting value, how governance frameworks can be built before regulators force the issue, and how education systems can produce a workforce genuinely ready for the AI era — are largely unanswered. That is where The Verita&apos;s research agenda begins. Independent, rigorous, and funded by the question — not the answer.
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {["No vendor relationships", "No sponsored findings", "All policy research published openly", "Applied research available for co-publication"].map((p) => (
-              <div key={p} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ width: 6, height: 6, background: v.blue, borderRadius: "50%", flexShrink: 0, display: "inline-block" }} />
-                <span style={{ fontSize: 13, color: "#4a6a8a", fontWeight: 500 }}>{p}</span>
+        {/* Left — Market Reality with stats */}
+        <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Market Reality</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 32 }}>
+            The AI investment is happening.<br />The results are not.
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {STATS.map((s) => (
+              <div key={s.num} style={{ background: "rgba(255,255,255,0.06)", padding: "20px 24px", borderLeft: `3px solid ${v.blueLight}` }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 40, fontWeight: 600, color: v.navy, lineHeight: 1 }}>{s.num}</div>
+                <div style={{ fontSize: 13, color: "#4a6a8a", lineHeight: 1.5, marginTop: 6 }}>{s.label}</div>
+                <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 4, fontStyle: "italic" }}>{s.source}</div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right — stats */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {STATS.map((s) => (
-            <div key={s.num} style={{ background: v.bgSoft, padding: "24px 28px", borderLeft: `3px solid ${v.blue}` }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 44, fontWeight: 600, color: v.navy, lineHeight: 1 }}>{s.num}</div>
-              <div style={{ fontSize: 13, color: "#4a6a8a", lineHeight: 1.5, marginTop: 8 }}>{s.label}</div>
-              <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 5, fontStyle: "italic" }}>{s.source}</div>
-            </div>
-          ))}
+        {/* Right — Verita Response */}
+        <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 28 }}>
+            The model race is won.<br />The harder work<br />starts now.
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {RESPONSE_BULLETS.map((b, i) => (
+              <div key={b.label} style={{ background: "#fff", padding: "18px 20px", borderLeft: `3px solid ${i === 0 ? v.navy : v.blue}` }}>
+                <div style={{ fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase" as const, color: i === 0 ? v.navy : v.blueLight, fontWeight: 600, marginBottom: 6 }}>{b.label}</div>
+                <div style={{ fontSize: 13, color: v.textBody, lineHeight: 1.65 }}>{b.body}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </section>
 
       {/* Three Pillars */}
       {PILLARS.map((pillar, index) => (
-        <div key={pillar.id} id={pillar.id} style={{ borderBottom: `1px solid ${v.border}`, background: index % 2 === 0 ? v.bgSoft : "#fff" }}>
-          <div className="two-col-grid" style={{ padding: "56px 48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
+        <div key={pillar.id} id={pillar.id} style={{ borderBottom: `1px solid ${v.border}` }}>
+          <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
 
-            {/* Left — pillar description */}
-            <div>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>{pillar.num}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 34, fontWeight: 600, color: v.navy, lineHeight: 1.15, marginBottom: 16 }}>{pillar.title}</div>
-              <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8, marginBottom: 24 }}>{pillar.body}</p>
-              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 14 }}>Research questions we are investigating</div>
-              {pillar.questions.map((q) => (
-                <div key={q} style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 12 }}>
-                  <span style={{ color: v.blue, fontWeight: 600, flexShrink: 0 }}>—</span>
-                  <span style={{ fontSize: 13, color: v.textBody, lineHeight: 1.6, fontStyle: "italic" }}>{q}</span>
-                </div>
-              ))}
+            {/* Left — The Problem */}
+            <div style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "56px 48px", borderRight: `1px solid ${v.border}` }}>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 14 }}>{pillar.problemLabel} · {pillar.num}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16, fontStyle: "italic" }}>
+                &ldquo;{pillar.problemHeadline}&rdquo;
+              </div>
+              <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{pillar.problemBody}</p>
             </div>
 
-            {/* Right — research list */}
-            <div>
-              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 16 }}>Research output</div>
+            {/* Right — Our Research */}
+            <div style={{ background: index % 2 === 0 ? v.bgSoft : "#fff", padding: "56px 48px" }}>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>{pillar.responseLabel} · {pillar.num}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16 }}>{pillar.responseHeadline}</div>
+              <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>{pillar.responseBody}</p>
+              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 14 }}>Research output</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 {pillar.research.map((r) => (
-                  <div key={r.title} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "16px 20px", borderLeft: `3px solid ${r.status === "published" ? "#0f6e3a" : r.status === "forthcoming" ? "#c8a020" : v.blue}` }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                  <div key={r.title} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "14px 18px", borderLeft: `3px solid ${r.status === "published" ? "#0f6e3a" : r.status === "forthcoming" ? "#c8a020" : v.blue}` }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                       <StatusBadge status={r.status} />
                       <span style={{ fontSize: 11, color: "#9aaabb" }}>{r.date}</span>
                     </div>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 600, color: v.navy, lineHeight: 1.4 }}>{r.title}</div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontWeight: 600, color: v.navy, lineHeight: 1.4 }}>{r.title}</div>
                   </div>
                 ))}
               </div>
