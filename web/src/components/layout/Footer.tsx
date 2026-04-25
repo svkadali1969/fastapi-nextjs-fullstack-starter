@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
         {Object.entries(FOOTER_LINKS).map(([section, links]) => (
           <div key={section}>
-            <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 500, marginBottom: 16 }}>{section}</div>
+            <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 600, marginBottom: 16 }}>{section}</div>
             {links.map((link) => (
               <Link key={link.label} href={link.href} style={{ fontSize: 13, color: "#4a5568", marginBottom: 10, display: "block", textDecoration: "none" }}>
                 {link.label}

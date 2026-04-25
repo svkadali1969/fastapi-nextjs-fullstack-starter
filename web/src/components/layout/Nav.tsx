@@ -59,7 +59,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Link href="/about#contact" onClick={() => setMenuOpen(false)} style={{ background: "#1a3a5c", color: "#fff", padding: "14px 18px", fontSize: 13, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontWeight: 500, marginTop: 16, textAlign: "center" }}>
+          <Link href="/about#contact" onClick={() => setMenuOpen(false)} style={{ background: "#1a3a5c", color: "#fff", padding: "14px 18px", fontSize: 13, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontWeight: 600, marginTop: 16, textAlign: "center" }}>
             Partner with us
           </Link>
         </div>
