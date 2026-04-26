@@ -1,91 +1,148 @@
 "use client";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 const v = { navy: "#1a3a5c", blue: "#2e75b6", blueLight: "#5a9ad4", bluePale: "#e6f0fb", bgSoft: "#f6f9fc", bgRule: "#e8edf2", textBody: "#4a5568", border: "#e8edf2" };
 
-const SECTIONS = [
-  {
-    id: "students",
-    num: "Education Focus 01",
-    audience: "Aspiring Students",
-    problemLabel: "The Problem",
-    problemHeadline: "The degree students are earning today may not prepare them for the jobs that will exist when they graduate.",
-    problemBody: "Universities are still debating whether students should use AI at all. Meanwhile the economy is moving. The four-year degree in its current form was designed for a world where knowledge was scarce and credentials were the signal. In an AI era, both assumptions are breaking down. Students graduating in 2027 will enter a workforce where AI fluency is not a differentiator — it is a baseline requirement.",
-    programLabel: "Our Program",
-    programName: "AI Foundations Certificate",
-    programSub: "A 3-month certification for students and early-career professionals entering an AI-native world.",
-    modules: [
-      "Fundamentals of AI",
-      "Concepts of ML, LLM, Generative AI and Agentic AI",
-      "Introduction to Responsible AI",
-      "How to identify business use cases for AI",
-    ],
-    specializations: [],
-    tailored: "Programs are tailored to the specific needs of your institution or cohort.",
-    coming: "Further programs in development — including sector-specific AI literacy tracks.",
-  },
-  {
-    id: "workforce",
-    num: "Education Focus 02",
-    audience: "Experienced Workforce",
-    problemLabel: "The Problem",
-    problemHeadline: "Millions of working professionals are navigating AI transformation with no structured support.",
-    problemBody: "Organizations are deploying AI faster than their people can adapt. Managers are redesigning workflows they don't fully understand. Individual contributors are being asked to work alongside AI systems nobody has trained them to evaluate or govern. Corporate L&D is responding with one-day workshops and online modules that scratch the surface of a deep transformation.",
-    programLabel: "Our Program",
-    programName: "AI in Practice",
-    programSub: "For working professionals ready to apply AI to real business problems — from use case to production.",
-    modules: [
-      "Identifying and scoping business use cases for AI",
-      "Scaling AI from pilot to production",
-      "AI governance and operational frameworks",
-      "Managing AI in live business environments",
-    ],
-    specializations: [
-      "AI in Finance — use cases, risk, and regulatory considerations",
-      "AI in Supply Chain — optimization, forecasting, and operational AI",
-      "AI in HR — workforce analytics, talent AI, and ethical considerations",
-    ],
-    tailored: "All programs are tailored to the specific needs of your organization or cohort.",
-    coming: "Further functional specializations in development.",
-  },
-  {
-    id: "leadership",
-    num: "Education Focus 03",
-    audience: "Strategic Leadership",
-    problemLabel: "The Problem",
-    problemHeadline: "Most senior leaders can talk about AI strategy. Very few can lead it.",
-    problemBody: "There is a difference between understanding AI as a concept and being able to make consequential decisions about AI deployment, governance, and organizational transformation. Boards are approving AI investments they cannot evaluate. Executives are commissioning AI strategies they cannot interrogate. The leadership layer is underprepared — and the consequences are already showing up in failed deployments and governance failures.",
-    programLabel: "Our Program",
-    programName: "Executive AI Leadership Program",
-    programSub: "For senior leaders building AI-ready organizations — strategy, governance, and the workforce of the future.",
-    modules: [
-      "Keeping the workforce ready for an AI-first future",
-      "Positioning AI for long-term organizational advantage",
-      "Governance and regulatory compliance",
-      "Building and sustaining AI leadership capability",
-    ],
-    specializations: [],
-    tailored: "Programs are tailored to the specific needs of your leadership team and organizational context.",
-    coming: "Further programs for boards and non-executive directors in development.",
-  },
-];
+type EducationItem = {
+  id: string;
+  title: string;
+  type: string;
+  status: string;
+  description: string | null;
+  duration: string | null;
+  pdf_url: string | null;
+  coming_soon: boolean;
+  display_order: number;
+};
+
+type EducationSection = {
+  id: string;
+  number: string;
+  slug: string;
+  audience: string;
+  problem_headline: string;
+  problem_body: string;
+  program_name: string;
+  program_sub: string;
+  tailored_note: string;
+  coming_soon: string;
+  display_order: number;
+  items: EducationItem[];
+};
+
+function StatusBadge({ status }: { status: string }) {
+  const styles: Record<string, { bg: string; color: string; label: string }> = {
+    active: { bg: "#e6f9ef", color: "#0f6e3a", label: "Available" },
+    forthcoming: { bg: "#fef9e7", color: "#8a6500", label: "Forthcoming" },
+    future: { bg: v.bluePale, color: "#1a5276", label: "In development" },
+  };
+  const s = styles[status] || styles.future;
+  return (
+    <span style={{ background: s.bg, color: s.color, fontSize: 10, padding: "2px 8px", fontWeight: 500, letterSpacing: 0.5, whiteSpace: "nowrap" as const }}>
+      {s.label}
+    </span>
+  );
+}
+
+function Modal({ item, onClose }: { item: EducationItem; onClose: () => void }) {
+  return (
+    <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }} onClick={onClose}>
+      <div style={{ background: "#fff", maxWidth: 580, width: "100%", padding: "40px", position: "relative", maxHeight: "90vh", overflowY: "auto" }} onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, background: "none", border: "none", fontSize: 20, cursor: "pointer", color: "#9aaabb" }}>✕</button>
+        
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+          <StatusBadge status={item.status} />
+          {item.duration && (
+            <span style={{ fontSize: 12, color: "#9aaabb", fontWeight: 500 }}>
+              {item.duration}
+            </span>
+          )}
+          <span style={{ fontSize: 11, color: "#9aaabb", textTransform: "uppercase", letterSpacing: 1 }}>
+            {item.type === "module" ? "Course" : "Specialization"}
+          </span>
+        </div>
+
+        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.3, marginBottom: 20 }}>
+          {item.title}
+        </div>
+
+        {item.description ? (
+          <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>{item.description}</p>
+        ) : (
+          <p style={{ fontSize: 14, color: "#9aaabb", lineHeight: 1.8, marginBottom: 28, fontStyle: "italic" }}>
+            Full course description coming soon.
+          </p>
+        )}
+
+        <div style={{ borderTop: `1px solid ${v.border}`, paddingTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
+          {item.pdf_url && (
+            <a href={item.pdf_url} target="_blank" rel="noreferrer" style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>
+              Download syllabus →
+            </a>
+          )}
+          <a href="mailto:education@theveritaai.com" style={{ background: "transparent", color: v.navy, padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, border: `1.5px solid ${v.navy}`, display: "inline-block" }}>
+            Enquire about this course →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function EducationPage() {
+  const [sections, setSections] = useState<EducationSection[]>([]);
+  const [selectedItem, setSelectedItem] = useState<EducationItem | null>(null);
   const [formData, setFormData] = useState({ name: "", org: "", role: "", interest: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data: sectionsData } = await supabase
+        .from('education_sections')
+        .select('*')
+        .order('display_order');
+
+      if (!sectionsData) return;
+
+      const sectionsWithItems = await Promise.all(
+        sectionsData.map(async (section) => {
+          const { data: items } = await supabase
+            .from('education_items')
+            .select('*')
+            .eq('section_id', section.id)
+            .order('display_order');
+          return { ...section, items: items || [] };
+        })
+      );
+
+      setSections(sectionsWithItems);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  if (loading) return (
+    <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
+      <Nav />
+      <div style={{ padding: "64px 48px", color: v.textBody }}>Loading...</div>
+      <Footer />
+    </div>
+  );
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#fff" }}>
       <Nav />
 
+      {selectedItem && <Modal item={selectedItem} onClose={() => setSelectedItem(null)} />}
+
       {/* Hero */}
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
-
-        {/* Left — The Problem */}
         <div style={{ background: v.bgSoft, padding: "64px 48px", borderRight: `1px solid ${v.border}` }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 600, marginBottom: 20 }}>The Problem</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 20 }}>The Problem</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20, fontStyle: "italic" }}>
             &ldquo;The workforce AI needs does not exist yet. And the institutions responsible for building it are not moving fast enough.&rdquo;
           </div>
@@ -93,10 +150,8 @@ export default function EducationPage() {
             Schools are debating AI policy while curricula age. Organizations are deploying AI while their people struggle to keep pace. Senior leaders are making consequential AI decisions without the capability to evaluate them. The problem is not awareness — it is preparation. And preparation requires research that is honest about what is actually broken.
           </p>
         </div>
-
-        {/* Right — Verita Response */}
         <div style={{ background: "#fff", padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>The Verita Response</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 28 }}>
             Our education programs start from a position, not a question.
           </div>
@@ -113,65 +168,64 @@ export default function EducationPage() {
             ))}
           </div>
         </div>
-
       </section>
 
       {/* Three Education Sections */}
-      {SECTIONS.map((section, index) => (
-        <div key={section.id} id={section.id} style={{ borderBottom: `1px solid ${v.border}` }}>
+      {sections.map((section, index) => (
+        <div key={section.id} id={section.slug} style={{ borderBottom: `1px solid ${v.border}` }}>
           <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
 
             {/* Left — The Problem */}
             <div style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "56px 48px", borderRight: `1px solid ${v.border}` }}>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 600, marginBottom: 14 }}>{section.problemLabel} · {section.num}</div>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 14 }}>KEY CHALLENGE  · {section.audience}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16, fontStyle: "italic" }}>
-                &ldquo;{section.problemHeadline}&rdquo;
+                &ldquo;{section.problem_headline}&rdquo;
               </div>
-              <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{section.problemBody}</p>
+              <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{section.problem_body}</p>
             </div>
 
-            {/* Right — Our Program */}
+            {/* Right — Course Table */}
             <div style={{ background: index % 2 === 0 ? v.bgSoft : "#fff", padding: "56px 48px" }}>
-              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 14 }}>{section.programLabel} · {section.audience}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 8 }}>{section.programName}</div>
-              <p style={{ fontSize: 13, color: "#6a7a8a", lineHeight: 1.6, marginBottom: 24, fontStyle: "italic" }}>{section.programSub}</p>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Our Programs · {section.audience}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 24 }}>{section.program_name}</div>
 
-              {/* Modules */}
-              <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 600, marginBottom: 12 }}>Program modules</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: section.specializations.length > 0 ? 24 : 16 }}>
-                {section.modules.map((m) => (
-                  <div key={m} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "12px 16px", borderLeft: `3px solid ${v.blue}`, display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ width: 6, height: 6, background: v.blue, borderRadius: "50%", flexShrink: 0, display: "inline-block" }} />
-                    <span style={{ fontSize: 13, color: v.navy, lineHeight: 1.5 }}>{m}</span>
+              {/* Course table header */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 90px 100px", gap: 8, padding: "8px 12px", borderBottom: `2px solid ${v.border}`, marginBottom: 4 }}>
+                <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#9aaabb", fontWeight: 500 }}>Course</div>
+                <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#9aaabb", fontWeight: 500 }}>Duration</div>
+                <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#9aaabb", fontWeight: 500 }}>Status</div>
+                <div style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#9aaabb", fontWeight: 500 }}></div>
+              </div>
+
+              
+              {/* Course rows */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 20, maxHeight: 320, overflowY: "auto" }}>
+                {section.items.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{ display: "grid", gridTemplateColumns: "1fr 80px 90px 100px", gap: 8, padding: "14px 12px", background: index % 2 === 0 ? "#fff" : v.bgSoft, borderLeft: `3px solid ${item.type === "specialization" ? v.blueLight : v.blue}`, alignItems: "center", cursor: "pointer" }}
+                    onClick={() => setSelectedItem(item)}
+                  >
+                    <div>
+                      <div style={{ fontSize: 13, color: v.navy, fontWeight: 500, lineHeight: 1.4 }}>{item.title}</div>
+                      {item.type === "specialization" && (
+                        <div style={{ fontSize: 10, color: v.blueLight, marginTop: 3, letterSpacing: 0.5 }}>Specialization</div>
+                      )}
+                    </div>
+                    <div style={{ fontSize: 12, color: "#6a7a8a" }}>{item.duration || "TBD"}</div>
+                    <div><StatusBadge status={item.status} /></div>
+                    <div style={{ fontSize: 12, color: v.blue, fontWeight: 500 }}>View details →</div>
                   </div>
                 ))}
               </div>
 
-              {/* Functional specializations */}
-              {section.specializations.length > 0 && (
-                <>
-                  <div style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#8a9aaa", fontWeight: 600, marginBottom: 12 }}>Functional specializations</div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 16 }}>
-                    {section.specializations.map((s) => (
-                      <div key={s} style={{ background: index % 2 === 0 ? "#fff" : v.bgSoft, padding: "12px 16px", borderLeft: `3px solid ${v.blueLight}`, display: "flex", alignItems: "center", gap: 10 }}>
-                        <span style={{ width: 6, height: 6, background: v.blueLight, borderRadius: "50%", flexShrink: 0, display: "inline-block" }} />
-                        <span style={{ fontSize: 13, color: v.textBody, lineHeight: 1.5 }}>{s}</span>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
               {/* Tailored note */}
               <div style={{ fontSize: 12, color: "#6a7a8a", lineHeight: 1.6, fontStyle: "italic", padding: "12px 16px", background: index % 2 === 0 ? "#fff" : v.bgSoft, borderLeft: `3px solid #e8edf2`, marginBottom: 8 }}>
-                {section.tailored}
+                {section.tailored_note}
               </div>
-
-              {/* Coming soon */}
               <div style={{ fontSize: 12, color: v.blueLight, lineHeight: 1.6, marginTop: 8 }}>
-                ↳ {section.coming}
+                ↳ {section.coming_soon}
               </div>
-
             </div>
           </div>
         </div>
@@ -181,7 +235,7 @@ export default function EducationPage() {
       <section id="enquiry" style={{ padding: "72px 48px", borderBottom: `1px solid ${v.border}` }}>
         <div className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
-            <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 16 }}>Get in touch</div>
+            <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Get in touch</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, marginBottom: 16, lineHeight: 1.2 }}>Talk to us about your AI education needs.</div>
             <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.75, marginBottom: 24 }}>Whether you are a university exploring curriculum redesign, an organization building AI capability in your workforce, or a leadership team seeking to strengthen AI decision-making — we would like to hear from you.</p>
             {["education@theveritaai.com", "India — New Delhi & Mumbai", "United States — New York & San Francisco", "Response within 2 business days"].map((d) => (
@@ -201,12 +255,12 @@ export default function EducationPage() {
               <>
                 {[{ label: "Your name", key: "name", placeholder: "Full name" }, { label: "Organization", key: "org", placeholder: "Company or institution" }, { label: "Your role", key: "role", placeholder: "e.g. CHRO, Dean, Head of L&D" }].map((f) => (
                   <div key={f.key} style={{ marginBottom: 16 }}>
-                    <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>{f.label}</label>
+                    <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>{f.label}</label>
                     <input type="text" placeholder={f.placeholder} value={formData[f.key as keyof typeof formData]} onChange={(e) => setFormData({ ...formData, [f.key]: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", boxSizing: "border-box" as const }} />
                   </div>
                 ))}
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>I am enquiring about</label>
+                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>I am enquiring about</label>
                   <select value={formData.interest} onChange={(e) => setFormData({ ...formData, interest: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", appearance: "none" as const }}>
                     <option>AI Foundations Certificate — aspiring students</option>
                     <option>AI in Practice — experienced workforce</option>
@@ -216,10 +270,10 @@ export default function EducationPage() {
                   </select>
                 </div>
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>Message</label>
+                  <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>Message</label>
                   <textarea rows={3} placeholder="Tell us about your organization and what you are trying to achieve" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", resize: "vertical", boxSizing: "border-box" as const }} />
                 </div>
-                <button onClick={() => setSubmitted(true)} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, width: "100%", marginTop: 8 }}>Send enquiry</button>
+                <button onClick={() => setSubmitted(true)} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, width: "100%", marginTop: 8 }}>Send enquiry</button>
                 <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 10, lineHeight: 1.5 }}>Your information is held in strict confidence and will not be shared with third parties.</div>
               </>
             )}
