@@ -32,14 +32,10 @@ const SUGGESTIONS = [
   "How can my organization partner with The Verita?",
 ];
 
-const TICKER_ITEMS = [
-  "Forthcoming — AI & the Future of Work: India Report 2025",
-  "Applications open — Founding Research Fellows Program",
-  "Launching — AI Foundations Certificate · Cohort 1",
-  "Forthcoming — Responsible AI Governance Frameworks Report",
-];
 
-export default function HomeContent() {
+
+
+export default function HomeContent({ tickerItems }: { tickerItems: string[] }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -171,7 +167,7 @@ export default function HomeContent() {
 
       {/* Ticker */}
       <div style={{ background: "#1a3a5c", padding: "12px 48px", display: "flex", gap: 48, overflowX: "auto" }}>
-        {TICKER_ITEMS.map((item) => (
+        {tickerItems.map((item) => (
           <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#5a9ad4", flexShrink: 0 }} />
             <span style={{ fontSize: 12, color: "#c8d8e8", whiteSpace: "nowrap", letterSpacing: 0.3 }}>{item}</span>
