@@ -136,10 +136,10 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
             Beyond the Model: Who Is Asking the Harder Questions?
           </div>
           <p style={{ fontSize: 14, color: "#4a5568", lineHeight: 1.8, marginBottom: 24, flex: 1 }}>
-            The race to build better models is well funded. The harder question — how organizations leverage their real assets: their data, their people, their institutional knowledge — to create lasting, responsible business value from AI — is not. That is where The Verita&apos;s research agenda is focused. We study how organizations can capture value from AI in the near term while building toward the deeper transformation that long-term competitiveness will require.
+            The Verita&apos;s research is focused on three areas where independent inquiry is most needed: Responsible AI, AI Governance, and the Future Workforce. Our research equips organizations with the insight to deploy AI responsibly — not waiting for regulation to arrive, but building the ethical frameworks and workforce capability that sustainable AI adoption requires. We are a research and education institute. We do not implement, we do not consult, and we do not have a platform to sell. What we produce is independent research — and education programs built directly from that research. Our findings inform what we teach. What we teach is grounded in evidence, not vendor agendas. Organizations gain both the insight to understand what AI requires of them, and the capability to act on it.
           </p>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#2e75b6", marginBottom: 24, paddingTop: 20, borderTop: "1px solid #e8edf2" }}>
-            Near-term value. Long-term transformation. Independent research.
+             Research that informs. Education that builds capability.
           </div>
           <Link href="/research" style={{ fontSize: 13, color: "#2e75b6", fontWeight: 600, textDecoration: "none", letterSpacing: 0.3 }}>
             Read our research agenda →
