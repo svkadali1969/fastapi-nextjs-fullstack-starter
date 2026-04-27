@@ -21,7 +21,15 @@ class ContactForm(BaseModel):
     message: str = ""
     form_type: str = "general"
 
+@router.get("/debug")
+async def debug_env():
+    return {
+        "has_resend_key": bool(os.getenv("RESEND_API_KEY")),
+        "has_mail_to": bool(os.getenv("MAIL_TO")),
+    }
+
 @router.post("/submit")
+
 async def submit_contact(form: ContactForm):
     try:
         resend.api_key = os.getenv("RESEND_API_KEY")
