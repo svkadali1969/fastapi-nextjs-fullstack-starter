@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+resend.api_key = os.getenv("RESEND_API_KEY", "")
+
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/contact", tags=["contact"])
@@ -29,14 +31,10 @@ async def debug_env():
     }
 
 @router.post("/submit")
-
 async def submit_contact(form: ContactForm):
     try:
-        resend.api_key = os.getenv("RESEND_API_KEY")
-
         if not resend.api_key:
             raise HTTPException(status_code=500, detail="Email configuration error")
-
         subject = f"New {form.form_type.title()} Enquiry - {form.name}"
 
         body = f"""
