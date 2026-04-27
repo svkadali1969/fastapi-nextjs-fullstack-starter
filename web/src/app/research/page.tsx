@@ -3,6 +3,7 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+
 import { supabase } from "@/lib/supabase";
 
 const v = { navy: "#1a3a5c", blue: "#2e75b6", blueLight: "#5a9ad4", bluePale: "#e6f0fb", bgSoft: "#f6f9fc", bgRule: "#e8edf2", textBody: "#4a5568", border: "#e8edf2" };
@@ -105,6 +106,8 @@ export default function ResearchPage() {
   const [pillars, setPillars] = useState<Pillar[]>([]);
   const [selectedOutput, setSelectedOutput] = useState<ResearchOutput | null>(null);
   const [loading, setLoading] = useState(true);
+  const [researchForm, setResearchForm] = useState({ name: "", email: "", org: "", message: "" });
+  const [researchSubmitted, setResearchSubmitted] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -151,10 +154,14 @@ export default function ResearchPage() {
         </div>
         <div style={{ background: "#fff", padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 28 }}>
-            The model race is won.<br />The harder work<br />starts now.
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20 }}>
+              The model race is won.<br />The harder work starts now.
+            </div>
+            <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 24 }}>
+              The last decade produced extraordinary advances in AI models. The next decade will be defined by how well organizations apply them — at scale, responsibly, and in ways that create lasting value. Governing AI before regulation forces the issue. Building workforces ready for the AI era. These require significant independent research — and that is exactly what The Verita Institute is built to produce.
+            </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>         
+
             {RESPONSE_BULLETS.map((b, i) => (
               <div key={b.label} style={{ background: v.bgSoft, padding: "18px 20px", borderLeft: `3px solid ${i === 0 ? v.navy : v.blue}` }}>
                 <div style={{ fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase" as const, color: i === 0 ? v.navy : v.blueLight, fontWeight: 600, marginBottom: 6 }}>{b.label}</div>
@@ -223,7 +230,69 @@ export default function ResearchPage() {
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>Commission Research</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 34, fontWeight: 600, color: "#fff", lineHeight: 1.25, marginBottom: 14 }}>Have a specific AI question your organization needs answered independently?</div>
           <p style={{ fontSize: 14, color: "#a8c8e8", lineHeight: 1.75, marginBottom: 24 }}>The Verita takes on a small number of commissioned research engagements each quarter. You fund the question. We produce the answer the market can trust.</p>
-          <Link href="/about#contact" style={{ background: "#fff", color: v.navy, padding: "13px 28px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>Discuss a research brief</Link>
+    {!researchSubmitted ? (
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 8 }}>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={researchForm.name}
+          onChange={(e) => setResearchForm({ ...researchForm, name: e.target.value })}
+          style={{ padding: "12px 14px", border: "1px solid rgba(255,255,255,0.2)", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: "#fff", background: "rgba(255,255,255,0.08)", outline: "none" }}
+        />
+        <input
+          type="email"
+          placeholder="Your email"
+          value={researchForm.email}
+          onChange={(e) => setResearchForm({ ...researchForm, email: e.target.value })}
+          style={{ padding: "12px 14px", border: "1px solid rgba(255,255,255,0.2)", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: "#fff", background: "rgba(255,255,255,0.08)", outline: "none" }}
+        />
+        <input
+          type="text"
+          placeholder="Organization"
+          value={researchForm.org}
+          onChange={(e) => setResearchForm({ ...researchForm, org: e.target.value })}
+          style={{ padding: "12px 14px", border: "1px solid rgba(255,255,255,0.2)", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: "#fff", background: "rgba(255,255,255,0.08)", outline: "none" }}
+        />
+        <textarea
+          rows={3}
+          placeholder="Briefly describe your research question..."
+          value={researchForm.message}
+          onChange={(e) => setResearchForm({ ...researchForm, message: e.target.value })}
+          style={{ padding: "12px 14px", border: "1px solid rgba(255,255,255,0.2)", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: "#fff", background: "rgba(255,255,255,0.08)", outline: "none", resize: "vertical" }}
+        />
+        <button
+          onClick={async () => {
+            try {
+              const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                name: researchForm.name,
+                email: researchForm.email,
+                org: researchForm.org,
+                role: "",
+                interest: "Research commission",
+                message: researchForm.message,
+                form_type: "research"
+              })
+              });
+              if (res.ok) setResearchSubmitted(true);
+            } catch (e) {
+              setResearchSubmitted(true);
+            }
+          }}
+      style={{ background: "#fff", color: v.navy, padding: "13px 28px", fontSize: 13, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}
+    >
+      Submit research brief
+    </button>
+  </div>
+) : (
+  <div style={{ background: "rgba(255,255,255,0.1)", padding: "20px 24px", borderLeft: "3px solid #5a9ad4" }}>
+    <div style={{ fontSize: 14, color: "#fff", fontWeight: 500, marginBottom: 4 }}>Thank you for your brief.</div>
+    <div style={{ fontSize: 13, color: "#a8c8e8" }}>We will be in touch within 2 business days.</div>
+  </div>
+)}
+
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {[

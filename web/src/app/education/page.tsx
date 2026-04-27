@@ -95,7 +95,7 @@ function Modal({ item, onClose }: { item: EducationItem; onClose: () => void }) 
 export default function EducationPage() {
   const [sections, setSections] = useState<EducationSection[]>([]);
   const [selectedItem, setSelectedItem] = useState<EducationItem | null>(null);
-  const [formData, setFormData] = useState({ name: "", org: "", role: "", interest: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", org: "", role: "", interest: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -122,6 +122,7 @@ export default function EducationPage() {
       setSections(sectionsWithItems);
       setLoading(false);
     }
+    
     fetchData();
   }, []);
 
@@ -152,9 +153,14 @@ export default function EducationPage() {
         </div>
         <div style={{ background: "#fff", padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 28 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 20 }}>
             Our education programs start from a position, not a question.
           </div>
+          <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 24 }}>
+            Most AI education is academic theory dressed up as business training, or vendor-led programs designed to sell platforms. Neither produces the capability organizations actually need. The Verita&apos;s programs are different in three ways: they are built directly from our independent research — not theory; they put AI at the center of how business problems are solved — not as an add-on; and they teach people how to use AI to build new business models, not just automate old ones. This is education designed for the world that is actually coming.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}></div>
+
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {[
               { label: "For aspiring students", body: "The four-year degree in its current form is not fit for the AI era. Curriculum needs to be rebuilt from the ground up, not patched. Our programs are focused on building genuine AI fluency from the foundations up." },
@@ -253,7 +259,8 @@ export default function EducationPage() {
               </div>
             ) : (
               <>
-                {[{ label: "Your name", key: "name", placeholder: "Full name" }, { label: "Organization", key: "org", placeholder: "Company or institution" }, { label: "Your role", key: "role", placeholder: "e.g. CHRO, Dean, Head of L&D" }].map((f) => (
+                {[{ label: "Your name", key: "name", placeholder: "Full name" },
+{ label: "Your email", key: "email", placeholder: "your@email.com" }, { label: "Organization", key: "org", placeholder: "Company or institution" }, { label: "Your role", key: "role", placeholder: "e.g. CHRO, Dean, Head of L&D" }].map((f) => (
                   <div key={f.key} style={{ marginBottom: 16 }}>
                     <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>{f.label}</label>
                     <input type="text" placeholder={f.placeholder} value={formData[f.key as keyof typeof formData]} onChange={(e) => setFormData({ ...formData, [f.key]: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", boxSizing: "border-box" as const }} />
@@ -273,7 +280,27 @@ export default function EducationPage() {
                   <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 500, display: "block", marginBottom: 6 }}>Message</label>
                   <textarea rows={3} placeholder="Tell us about your organization and what you are trying to achieve" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", resize: "vertical", boxSizing: "border-box" as const }} />
                 </div>
-                <button onClick={() => setSubmitted(true)} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, width: "100%", marginTop: 8 }}>Send enquiry</button>
+                <button onClick={async () => {
+                  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+                  try {
+                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                      name: formData.name,
+                      email: formData.email,
+                      org: formData.org,
+                      role: formData.role,
+                      interest: formData.interest,
+                      message: formData.message,
+                      form_type: "education"
+                    })
+                    });
+                    if (res.ok) setSubmitted(true);
+                  } catch (e) {
+                    setSubmitted(true);
+                  }
+                }} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, width: "100%", marginTop: 8 }}>Send enquiry</button>
                 <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 10, lineHeight: 1.5 }}>Your information is held in strict confidence and will not be shared with third parties.</div>
               </>
             )}

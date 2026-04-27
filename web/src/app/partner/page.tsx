@@ -30,7 +30,7 @@ const PARTNERSHIP_TYPES = [
 ];
 
 export default function PartnerPage() {
-  const [formData, setFormData] = useState({ name: "", org: "", role: "", type: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", org: "", role: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -116,7 +116,8 @@ export default function PartnerPage() {
               </div>
             ) : (
               <div style={{ background: "#fff", padding: "32px" }}>
-                {[{ label: "Your name", key: "name", placeholder: "Full name" }, { label: "Organization", key: "org", placeholder: "Company, university, or institution" }, { label: "Your role", key: "role", placeholder: "e.g. VP Research, Dean, Policy Director" }].map((f) => (
+                {[{ label: "Your name", key: "name", placeholder: "Full name" },
+                { label: "Your email", key: "email", placeholder: "your@email.com" }, { label: "Organization", key: "org", placeholder: "Company, university, or institution" }, { label: "Your role", key: "role", placeholder: "e.g. VP Research, Dean, Policy Director" }].map((f) => (
                   <div key={f.key} style={{ marginBottom: 16 }}>
                     <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>{f.label}</label>
                     <input type="text" placeholder={f.placeholder} value={formData[f.key as keyof typeof formData]} onChange={(e) => setFormData({ ...formData, [f.key]: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", boxSizing: "border-box" as const }} />
@@ -135,7 +136,27 @@ export default function PartnerPage() {
                   <label style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase" as const, color: "#8a9aaa", fontWeight: 600, display: "block", marginBottom: 6 }}>Message</label>
                   <textarea rows={3} placeholder="Tell us about your organization and what you are looking to achieve" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", resize: "vertical", boxSizing: "border-box" as const }} />
                 </div>
-                <button onClick={() => setSubmitted(true)} style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, width: "100%", marginTop: 8 }}>Send enquiry</button>
+                <button onClick={async () => {
+                try {
+                  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    
+                    body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    org: formData.org,
+                    role: formData.role,
+                    interest: formData.type,
+                    message: formData.message,
+                    form_type: "partner"
+                  })
+                  });
+                  if (res.ok) setSubmitted(true);
+                } catch (e) {
+                  setSubmitted(true);
+                }
+                }}style={{ background: v.navy, color: "#fff", padding: "14px 32px", fontSize: 13, letterSpacing: 0.5, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, width: "100%", marginTop: 8 }}>Send enquiry</button>
                 <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 10, lineHeight: 1.5 }}>Your information is held in strict confidence and will not be shared with third parties.</div>
               </div>
             )}
