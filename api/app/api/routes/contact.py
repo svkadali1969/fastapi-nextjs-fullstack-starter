@@ -38,12 +38,12 @@ def send_email(subject: str, body: str, to_email: str):
     msg["To"] = to_email
     msg.set_content(body)
 
-
-    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+    with smtplib.SMTP("smtp.gmail.com", 25) as server:
         server.ehlo()
         server.starttls()
         server.login(mail_username, mail_password)
         server.send_message(msg)
+
 
 @router.post("/submit")
 
