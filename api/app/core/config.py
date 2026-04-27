@@ -6,7 +6,7 @@ class Settings(BaseAppSettings):
     HOST: str = "0.0.0.0"
     PORT: int = 8000
     SECRET_KEY: str = "dev-secret-change-in-production"
-    CORS_ORIGINS: str = "http://localhost:3000"
+    CORS_ORIGINS: str = "http://localhost:3000,https://www.theveritaai.com,https://theveritaai.com"
 
     @property
     def cors_origins_list(self) -> list[str]:
