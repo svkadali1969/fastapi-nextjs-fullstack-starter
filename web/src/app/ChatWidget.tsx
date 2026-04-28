@@ -28,8 +28,8 @@ function renderMarkdown(text: string) {
           parts.push(content.slice(lastIndex, match.index));
         }
         parts.push(
-          <a key={match.index} href={match[2]} target="_blank" rel="noreferrer" style={{ color: v.blue, textDecoration: "underline", fontWeight: 500 }}>
-            {match[1]}
+          <a key={match.index} href={match[2]} style={{ color: v.blue, textDecoration: "underline", fontWeight: 500 }}>
+          {match[1]}
           </a>
         );
         lastIndex = match.index + match[0].length;
