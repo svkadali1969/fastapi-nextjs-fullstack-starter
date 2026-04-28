@@ -69,8 +69,7 @@ export default function ChatWidget() {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto 36px", fontFamily: "'DM Sans', sans-serif", display: "grid", gridTemplateColumns: "200px 1fr", gap: 0, border: `1.5px solid ${v.navy}`, borderRadius: 2, boxShadow: "0 4px 24px rgba(26,58,92,0.08)", overflow: "hidden" }}>
-
+  <div className="chat-widget-container" style={{ maxWidth: 900, margin: "0 auto 36px", fontFamily: "'DM Sans', sans-serif", display: "grid", gridTemplateColumns: "200px 1fr", gap: 0, border: `1.5px solid ${v.navy}`, borderRadius: 2, boxShadow: "0 4px 24px rgba(26,58,92,0.08)", overflow: "hidden" }}>
       {/* Left — Suggestions */}
       <div style={{ background: v.bgSoft, borderRight: `2px solid ${v.border}`, display: "flex", flexDirection: "column" }}>
         <div style={{ padding: "14px 16px", borderBottom: `1px solid ${v.border}` }}>
@@ -188,6 +187,14 @@ export default function ChatWidget() {
         @keyframes bounce {
           0%, 80%, 100% { transform: translateY(0); }
           40% { transform: translateY(-6px); }
+        }
+        @media (max-width: 768px) {
+          .chat-widget-container {
+            grid-template-columns: 1fr !important;
+          }
+          .chat-widget-container > div:first-child {
+            display: none !important;
+          }
         }
       `}</style>
     </div>
