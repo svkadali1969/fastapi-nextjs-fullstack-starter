@@ -16,19 +16,49 @@ const SUGGESTIONS = [
 function renderMarkdown(text: string) {
   const lines = text.split('\n');
   return lines.map((line, i) => {
-    const parts = line.split(/\*\*(.*?)\*\*/g);
-    const rendered = parts.map((part, j) =>
-      j % 2 === 1 ? <strong key={j} style={{ color: v.navy, fontWeight: 600 }}>{part}</strong> : part
-    );
+    // Process links first [text](url)
+    const processLine = (content: string) => {
+      const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g;
+      const parts: React.ReactNode[] = [];
+      let lastIndex = 0;
+      let match;
+      
+      while ((match = linkRegex.exec(content)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push(content.slice(lastIndex, match.index));
+        }
+        parts.push(
+          <a key={match.index} href={match[2]} target="_blank" rel="noreferrer" style={{ color: v.blue, textDecoration: "underline", fontWeight: 500 }}>
+            {match[1]}
+          </a>
+        );
+        lastIndex = match.index + match[0].length;
+      }
+      if (lastIndex < content.length) {
+        parts.push(content.slice(lastIndex));
+      }
+      return parts.length > 0 ? parts : content;
+    };
+
+    // Bold text
+    const processBold = (content: string) => {
+      const parts = content.split(/\*\*(.*?)\*\*/g);
+      return parts.map((part, j) =>
+        j % 2 === 1 ? <strong key={j} style={{ color: v.navy, fontWeight: 600 }}>{part}</strong> : part
+      );
+    };
+
+    // Bullet points
     if (line.startsWith('- ') || line.startsWith('• ')) {
+      const content = line.replace(/^[-•]\s/, '');
       return (
         <div key={i} style={{ display: "flex", gap: 8, marginBottom: 4 }}>
           <span style={{ color: v.blue, flexShrink: 0 }}>•</span>
-          <span>{rendered}</span>
+          <span>{processLine(content)}</span>
         </div>
       );
     }
-    return line ? <p key={i} style={{ margin: "0 0 8px 0" }}>{rendered}</p> : <div key={i} style={{ height: 4 }} />;
+    return line ? <p key={i} style={{ margin: "0 0 8px 0" }}>{processLine(line)}</p> : <div key={i} style={{ height: 4 }} />;
   });
 }
 
