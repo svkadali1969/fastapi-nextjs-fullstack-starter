@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
-from app.api.routes import app_info, health, records, contact
+from app.api.routes import app_info, health, records, contact, chat
 from app.core.config import settings
 from app.core.redis import close_redis, init_redis
 
@@ -36,3 +36,4 @@ app.include_router(health.router)
 app.include_router(records.router)
 app.include_router(app_info.router)
 app.include_router(contact.router)
+app.include_router(chat.router)

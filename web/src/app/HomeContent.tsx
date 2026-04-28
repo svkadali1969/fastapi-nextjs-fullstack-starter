@@ -3,6 +3,8 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { useState } from "react";
 import Link from "next/link";
+import ChatWidget from "./ChatWidget";
+
 
 const RESPONSES: Record<string, string> = {
   gap: "The AI readiness gap refers to the growing mismatch between how fast organizations are deploying AI and how prepared their workforces are to work within it. Our forthcoming research shows this gap is most acute at the manager and director level — the layer where AI transformation actually succeeds or fails. It is not a technical gap. It is an organizational one.",
@@ -41,17 +43,26 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
   const [thinking, setThinking] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
 
-  function sendMessage(text?: string) {
+  async function sendMessage(text?: string) {
     const query = text ?? input.trim();
     if (!query) return;
     setMessages((prev) => [...prev, { role: "user", text: query }]);
     setInput("");
     setThinking(true);
     setShowSuggestions(false);
-    setTimeout(() => {
-      setThinking(false);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat/message`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: query })
+      });
+      const data = await res.json();
+      setMessages((prev) => [...prev, { role: "ai", text: data.response || "I apologize, I could not process your request." }]);
+    } catch (e) {
       setMessages((prev) => [...prev, { role: "ai", text: getResponse(query) }]);
-    }, 800 + Math.random() * 400);
+    } finally {
+      setThinking(false);
+    }
   }
 
   return (
@@ -71,59 +82,8 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
         </p>
 
         {/* Chat */}
-        <div style={{ maxWidth: 660, margin: "0 auto 18px" }}>
-          <div style={{ border: "1.5px solid #1a3a5c", background: "#fff", overflow: "hidden" }}>
-            {messages.length > 0 && (
-              <div style={{ padding: "18px 22px 0", maxHeight: 220, overflowY: "auto", display: "flex", flexDirection: "column", gap: 10 }}>
-                {messages.map((m, i) => (
-                  <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", flexDirection: m.role === "user" ? "row-reverse" : "row" }}>
-                    <div style={{ width: 26, height: 26, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 600, marginTop: 2, background: m.role === "user" ? "#1a3a5c" : "#e6f0fb", color: m.role === "user" ? "#fff" : "#2e75b6" }}>
-                      {m.role === "user" ? "You" : "V"}
-                    </div>
-                    <div style={{ maxWidth: "80%", padding: "9px 13px", fontSize: 13, lineHeight: 1.6, background: m.role === "user" ? "#1a3a5c" : "#f0f5fa", color: m.role === "user" ? "#fff" : "#1a1a1a", borderLeft: m.role === "ai" ? "3px solid #2e75b6" : "none" }}>
-                      {m.text}
-                    </div>
-                  </div>
-                ))}
-                {thinking && (
-                  <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                    <div style={{ width: 26, height: 26, borderRadius: "50%", background: "#e6f0fb", color: "#2e75b6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 600 }}>V</div>
-                    <div style={{ padding: "9px 13px", background: "#f0f5fa", borderLeft: "3px solid #2e75b6" }}>
-                      <span style={{ color: "#2e75b6", fontSize: 13 }}>Thinking…</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-            <div style={{ display: "flex", alignItems: "stretch", borderTop: messages.length > 0 ? "1px solid #e8edf2" : "none" }}>
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                placeholder="Ask about our research, programs, or how we can help your organization…"
-                style={{ flex: 1, padding: "15px 18px", fontSize: 14, fontFamily: "'DM Sans', sans-serif", border: "none", outline: "none", color: "#1a1a1a", background: "#fff" }}
-              />
-              <button
-                onClick={() => sendMessage()}
-                disabled={thinking}
-                style={{ background: thinking ? "#9aaabb" : "#1a3a5c", color: "#fff", border: "none", padding: "0 20px", cursor: thinking ? "not-allowed" : "pointer", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap", letterSpacing: 0.3 }}
-              >
-                Ask Verita →
-              </button>
-            </div>
-          </div>
-        </div>
+        <ChatWidget />
 
-        {/* Suggestions */}
-        {showSuggestions && (
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 36 }}>
-            {SUGGESTIONS.map((s) => (
-              <button key={s} onClick={() => sendMessage(s)} style={{ border: "1px solid #dce6f0", padding: "7px 15px", fontSize: 12, color: "#4a6a8a", cursor: "pointer", background: "#fff", fontFamily: "'DM Sans', sans-serif", borderRadius: 20 }}>
-                {s}
-              </button>
-            ))}
-          </div>
-        )}
       </section>
 
       {/* Focus Areas */}
