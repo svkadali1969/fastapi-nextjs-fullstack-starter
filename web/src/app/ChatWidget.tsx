@@ -63,13 +63,14 @@ function renderMarkdown(text: string) {
 }
 
 export default function ChatWidget() {
-  const [messages, setMessages] = useState<Message[]>(() => {
+const [messages, setMessages] = useState<Message[]>([]);
+useEffect(() => {
   if (typeof window !== 'undefined') {
     const saved = sessionStorage.getItem('verita-chat-messages');
-    return saved ? JSON.parse(saved) : [];
+    if (saved) setMessages(JSON.parse(saved));
   }
-  return [];
-  });
+}, []);
+
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -83,7 +84,7 @@ export default function ChatWidget() {
   }, [messages, thinking]);
 
   useEffect(() => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined'&& messages.length > 0) {
     sessionStorage.setItem('verita-chat-messages', JSON.stringify(messages));
   }
   }, [messages]);

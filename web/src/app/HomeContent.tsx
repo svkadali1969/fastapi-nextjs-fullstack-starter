@@ -81,8 +81,6 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
           Advancing AI-literate workforces through independent research and future-ready education.
         </p>
 
-        {/* Chat */}
-        <ChatWidget />
 
       </section>
 
@@ -125,6 +123,21 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
 
       </div>
 
+      {/* Chat */}
+      {/* Research Agent Section */}
+      <section style={{ padding: "64px 48px 0", textAlign: "center", borderTop: "1px solid #e8edf2" }}>
+        <p style={{ fontSize: 10, letterSpacing: 3.5, textTransform: "uppercase", color: "#5a8ab8", fontWeight: 600, marginBottom: 18 }}>
+          AI Research Agent
+        </p>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.05, marginBottom: 16 }}>
+          The Verita Research Agent.
+        </h2>
+        <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto 36px" }}>
+          Ask our AI research agent about our work, programs, or how The Verita can help your organization navigate the AI era.
+        </p>
+        <ChatWidget />
+    </section>
+    
       {/* Ticker */}
       <div style={{ background: "#1a3a5c", padding: "12px 48px", display: "flex", gap: 48, overflowX: "auto" }}>
         {tickerItems.map((item) => (
