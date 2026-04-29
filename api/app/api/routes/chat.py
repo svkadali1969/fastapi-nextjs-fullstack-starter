@@ -71,11 +71,12 @@ async def chat_message(request: ChatRequest):
         if similar:
             context = "Relevant content from The Verita's research:\n\n"
             for r in similar:
-                context += f"- {r['content']} (similarity: {r['similarity']:.2f})\n"
-            context += "\n\nFull institute overview:\n" + get_full_context()
+                source = r.get('source_title', r.get('content', ''))
+                context += f"Source: {source}\n"
+                context += f"Content: {r['content']}\n\n"
+            context += "\nFull institute overview:\n" + get_full_context()
         else:
             context = get_full_context()
-
         # Step 4 — call Claude
         message = anthropic_client.messages.create(
             model="claude-sonnet-4-20250514",
