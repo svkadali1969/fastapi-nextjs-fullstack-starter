@@ -260,9 +260,11 @@ export default function ResearchPage() {
           onChange={(e) => setResearchForm({ ...researchForm, message: e.target.value })}
           style={{ padding: "12px 14px", border: "1px solid rgba(255,255,255,0.2)", fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: "#fff", background: "rgba(255,255,255,0.08)", outline: "none", resize: "vertical" }}
         />
-        <button
-          onClick={async () => {
-            try {
+       <button onClick={async () => {
+          if (!researchForm.name.trim()) { alert("Please enter your name"); return; }
+          if (!researchForm.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(researchForm.email)) { alert("Please enter a valid email"); return; }
+          if (!researchForm.message.trim()) { alert("Please enter a message"); return; }
+          try {
               const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

@@ -137,8 +137,11 @@ export default function PartnerPage() {
                   <textarea rows={3} placeholder="Tell us about your organization and what you are looking to achieve" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", resize: "vertical", boxSizing: "border-box" as const }} />
                 </div>
                 <button onClick={async () => {
-                try {
-                  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
+                  if (!formData.name.trim()) { alert("Please enter your name"); return; }
+                  if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { alert("Please enter a valid email"); return; }
+                  if (!formData.message.trim()) { alert("Please enter a message"); return; }
+                  try {
+                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     
