@@ -12,8 +12,8 @@ const NAV_LINKS = [
   { id: "institute", label: "The Institute", href: "/institute" },
   { id: "fellows", label: "Fellows", href: "/fellows" },
   { id: "partner", label: "Partner with us", href: "/partner" },
+  { id: "chat", label: "Chat Verita ↗", href: "/chat" },
 ];
-
 
 export default function Nav() {
   const pathname = usePathname();
@@ -32,9 +32,29 @@ export default function Nav() {
         {NAV_LINKS.map((link) => {
           const isActive = pathname === link.href || pathname.startsWith(link.href.split("#")[0] + "/");
           return (
-            <Link key={link.id} href={link.href} style={{ fontSize: 13, color: isActive ? "#1a3a5c" : "#4a6a8a", textDecoration: "none", letterSpacing: 0.5, fontWeight: isActive ? 500 : 400, borderBottom: isActive ? "1.5px solid #2e75b6" : "1.5px solid transparent", paddingBottom: 2, whiteSpace: "nowrap" }}>
-              {link.label}
-            </Link>
+    <Link key={link.id} href={link.href} style={link.id === "chat" ? {
+      background: "#1a3a5c",
+      color: "#fff",
+      padding: "8px 16px",
+      fontSize: 12,
+      fontWeight: 600,
+      textDecoration: "none",
+      letterSpacing: 0.5,
+      borderRadius: 4,
+      whiteSpace: "nowrap" as const,
+      marginLeft: 8
+    } : {
+      fontSize: 13,
+      color: isActive ? "#1a3a5c" : "#4a6a8a",
+      textDecoration: "none",
+      letterSpacing: 0.5,
+      fontWeight: isActive ? 500 : 400,
+      borderBottom: isActive ? "1.5px solid #2e75b6" : "1.5px solid transparent",
+      paddingBottom: 2,
+      whiteSpace: "nowrap" as const
+    }}>
+      {link.label}
+    </Link>
           );
         })}
       </div>

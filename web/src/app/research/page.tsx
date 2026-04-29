@@ -28,8 +28,11 @@ type ResearchOutput = {
   status: string;
   date: string;
   pdf_url: string | null;
+  description: string | null;
   display_order: number;
 };
+
+
 
 type Pillar = {
   id: string;
@@ -74,14 +77,19 @@ function Modal({ output, onClose }: { output: ResearchOutput; onClose: () => voi
           {output.title}
         </div>
 
-        <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>
-          {output.status === "published"
-            ? "This publication is available for download below."
-            : output.status === "forthcoming"
-            ? "This publication is currently in final preparation. Register your interest to receive early access when it is ready."
-            : "This publication is in active development. Expected publication date will be confirmed in due course."}
-        </p>
+        {output.description ? (
+          <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>{output.description}</p>
+        ) : (
+          <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>
+            {output.status === "published"
+              ? "This publication is available for download below."
+              : output.status === "forthcoming"
+              ? "This publication is currently in final preparation. Register your interest to receive early access when it is ready."
+              : "This publication is in active development. Expected publication date will be confirmed in due course."}
+          </p>
+        )}
 
+       
         <div style={{ borderTop: `1px solid ${v.border}`, paddingTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
           {output.status === "published" && output.pdf_url && (
             <a href={output.pdf_url} target="_blank" rel="noreferrer" style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>

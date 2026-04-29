@@ -15,6 +15,7 @@ type Publication = {
   pdf_url: string | null;
   is_public: boolean;
   display_order: number;
+  description: string | null;
   pillars: { title: string; slug: string } | null;
 };
 
@@ -67,14 +68,18 @@ function Modal({ pub, onClose }: { pub: Publication; onClose: () => void }) {
           {pub.title}
         </div>
 
-        <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>
-          {pub.status === "published"
-            ? "This publication is available for download below."
-            : pub.status === "forthcoming"
-            ? "This publication is currently in final preparation. Register your interest to receive early access when it is ready."
-            : "This publication is in active development. Expected publication date will be confirmed in due course."}
-        </p>
-
+        {pub.description ? (
+          <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>{pub.description}</p>
+        ) : (
+          <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 28 }}>
+            {pub.status === "published"
+              ? "This publication is available for download below."
+              : pub.status === "forthcoming"
+              ? "This publication is currently in final preparation. Register your interest to receive early access when it is ready."
+              : "This publication is in active development. Expected publication date will be confirmed in due course."}
+          </p>
+        )}
+        
         <div style={{ borderTop: `1px solid ${v.border}`, paddingTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
           {pub.status === "published" && pub.pdf_url && (
             <a href={pub.pdf_url} target="_blank" rel="noreferrer" style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>
