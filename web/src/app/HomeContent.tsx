@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { useState } from "react";
 import Link from "next/link";
 import ChatWidget from "./ChatWidget";
+import LatestSection from "./LatestSection";
 
 
 const RESPONSES: Record<string, string> = {
@@ -123,9 +124,12 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
 
       </div>
 
+      <LatestSection />
+
       {/* Chat */}
+
       {/* Research Agent Section */}
-      <section style={{ padding: "64px 48px 0", textAlign: "center", borderTop: "1px solid #e8edf2" }}>
+      <section style={{ padding: "64px 48px 0", textAlign: "center" }}>
         <p style={{ fontSize: 10, letterSpacing: 3.5, textTransform: "uppercase", color: "#5a8ab8", fontWeight: 600, marginBottom: 18 }}>
           AI Research Agent
         </p>
@@ -137,6 +141,7 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
         </p>
         <ChatWidget />
     </section>
+    
     
       {/* Ticker */}
       <div style={{ background: "#1a3a5c", padding: "12px 48px", display: "flex", gap: 48, overflowX: "auto" }}>
