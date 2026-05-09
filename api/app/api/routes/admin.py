@@ -92,8 +92,11 @@ async def process_pdf(request: ProcessPDFRequest, x_admin_secret: str = Header(N
                 'embedding': embedding
             }).execute()
 
-        # Update research_output with embedding of title
-        title_embedding = get_embedding(request.source_title)
+        # Update research_output with embedding of title + description
+        pub_data = supabase.table('research_outputs').select('description').eq('id', request.source_id).execute()
+        description = pub_data.data[0].get('description', '') if pub_data.data else ''
+        combined_text = f"{request.source_title}. {description}" if description else request.source_title
+        title_embedding = get_embedding(combined_text)
         supabase.table('research_outputs').update(
             {'embedding': title_embedding}
         ).eq('id', request.source_id).execute()
