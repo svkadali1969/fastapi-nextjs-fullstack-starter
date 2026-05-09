@@ -26,9 +26,10 @@ openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY", ""))
 ADMIN_SECRET = os.getenv("ADMIN_SECRET", "verita-admin-2025")
 
 def verify_admin(x_admin_secret: str = Header(None)):
+    logger.info(f"Received secret: '{x_admin_secret}', Expected: '{ADMIN_SECRET}'")
     if x_admin_secret != ADMIN_SECRET:
         raise HTTPException(status_code=401, detail="Unauthorized")
-
+    
 def get_embedding(text: str) -> list:
     response = openai_client.embeddings.create(
         model="text-embedding-3-small",
