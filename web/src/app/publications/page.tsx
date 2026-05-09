@@ -31,6 +31,8 @@ const PILLAR_NAMES: Record<string, string> = {
   "future-workforce": "Future Workforce",
 };
 
+
+
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, { bg: string; color: string; label: string }> = {
     published: { bg: "#e6f9ef", color: "#0f6e3a", label: "Published" },
@@ -79,7 +81,7 @@ function Modal({ pub, onClose }: { pub: Publication; onClose: () => void }) {
               : "This publication is in active development. Expected publication date will be confirmed in due course."}
           </p>
         )}
-        
+
         <div style={{ borderTop: `1px solid ${v.border}`, paddingTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
           {pub.status === "published" && pub.pdf_url && (
             <a href={pub.pdf_url} target="_blank" rel="noreferrer" style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>
@@ -108,6 +110,9 @@ export default function PublicationsPage() {
   const [pillarFilter, setPillarFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [sortField, setSortField] = useState<"publication_year" | "pillar" | "status">("publication_year");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+
 
   useEffect(() => {
     async function fetchData() {
@@ -136,6 +141,33 @@ export default function PublicationsPage() {
     }
     setFiltered(results);
   }, [search, pillarFilter, statusFilter, publications]);
+function handleSort(field: "publication_year" | "pillar" | "status") {
+  if (sortField === field) {
+    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  } else {
+    setSortField(field);
+    setSortDirection("desc");
+  }
+}
+
+function getSorted(items: Publication[]) {
+  return [...items].sort((a, b) => {
+    let aVal: any, bVal: any;
+    if (sortField === "publication_year") {
+      aVal = a.publication_year;
+      bVal = b.publication_year;
+    } else if (sortField === "pillar") {
+      aVal = a.pillars?.slug || "";
+      bVal = b.pillars?.slug || "";
+    } else {
+      aVal = a.status;
+      bVal = b.status;
+    }
+    if (aVal < bVal) return sortDirection === "asc" ? -1 : 1;
+    if (aVal > bVal) return sortDirection === "asc" ? 1 : -1;
+    return 0;
+  });
+}
 
   const selectStyle = { padding: "10px 14px", border: `1px solid ${v.border}`, fontSize: 13, fontFamily: "'DM Sans', sans-serif", color: v.navy, background: "#fff", outline: "none", appearance: "none" as const, cursor: "pointer", minWidth: 160 };
 
@@ -146,6 +178,8 @@ export default function PublicationsPage() {
       <Footer />
     </div>
   );
+
+  const sorted = getSorted(filtered);
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#fff" }}>
@@ -194,17 +228,37 @@ export default function PublicationsPage() {
       <section style={{ padding: "0 48px 72px" }}>
         {/* Table header */}
         <div style={{ display: "grid", gridTemplateColumns: "80px 140px 1fr 110px 100px", gap: 16, padding: "16px 20px", borderBottom: `2px solid ${v.border}`, marginTop: 32 }}>
-          {["Year", "Pillar", "Title", "Status", ""].map((h) => (
-            <div key={h} style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#9aaabb", fontWeight: 500 }}>{h}</div>
+          {[
+            { label: "Year", field: "publication_year" as const },
+            { label: "Pillar", field: "pillar" as const },
+            { label: "Title", field: null },
+            { label: "Status", field: "status" as const },
+            { label: "", field: null },
+          ].map((h) => (
+            <div
+              key={h.label}
+              onClick={() => h.field && handleSort(h.field)}
+              style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase" as const, color: h.field ? v.blue : "#9aaabb", fontWeight: 500, cursor: h.field ? "pointer" : "default", display: "flex", alignItems: "center", gap: 4 }}
+            >
+              {h.label}
+              {h.field && (
+                <span style={{ color: sortField === h.field ? v.blue : "#9aaabb" }}>
+                  {sortField === h.field ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
+                </span>
+              )}
+            </div>
           ))}
+
+
+
         </div>
 
         {/* Table rows */}
         <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 2 }}>
-          {filtered.length === 0 ? (
+          {sorted.length === 0 ? (
             <div style={{ padding: "32px 20px", color: "#9aaabb", fontSize: 14 }}>No publications match your search.</div>
           ) : (
-            filtered.map((pub) => {
+            sorted.map((pub) => {
               const pillarSlug = pub.pillars?.slug || '';
               const pillarName = PILLAR_NAMES[pillarSlug] || '—';
               const pillarColor = PILLAR_COLORS[pillarSlug] || v.blue;
