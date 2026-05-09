@@ -1,9 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const v = { navy: "#1a3a5c", blue: "#2e75b6", blueLight: "#5a9ad4", bluePale: "#e6f0fb", bgSoft: "#f6f9fc", border: "#e8edf2", textBody: "#4a5568" };
 
-const ADMIN_SECRET = process.env.NEXT_PUBLIC_ADMIN_SECRET || "verita-admin-2025";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 type Publication = {
@@ -17,17 +16,44 @@ type Publication = {
 
 export default function AdminPage() {
   const [password, setPassword] = useState("");
+  const [adminSecret, setAdminSecret] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState<string | null>(null);
   const [message, setMessage] = useState("");
 
+  async function handleLogin() {
+    if (!password.trim()) {
+      setMessage("Please enter a password");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/admin/publications`, {
+        headers: { "x-admin-secret": password }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAdminSecret(password);
+        setAuthenticated(true);
+        setPublications(data.publications || []);
+        setMessage("");
+      } else {
+        setMessage("Invalid password");
+      }
+    } catch (e) {
+      setMessage("Could not connect to server");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function fetchPublications() {
     setLoading(true);
     try {
       const res = await fetch(`${API_URL}/admin/publications`, {
-        headers: { "x-admin-secret": ADMIN_SECRET }
+        headers: { "x-admin-secret": adminSecret }
       });
       const data = await res.json();
       setPublications(data.publications || []);
@@ -50,7 +76,7 @@ export default function AdminPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-secret": ADMIN_SECRET
+          "x-admin-secret": adminSecret
         },
         body: JSON.stringify({
           source_id: pub.id,
@@ -73,15 +99,6 @@ export default function AdminPage() {
     }
   }
 
-  function handleLogin() {
-    if (password === ADMIN_SECRET) {
-      setAuthenticated(true);
-      fetchPublications();
-    } else {
-      setMessage("Invalid password");
-    }
-  }
-
   if (!authenticated) {
     return (
       <div style={{ fontFamily: "'DM Sans', sans-serif", minHeight: "100vh", background: v.bgSoft, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -99,9 +116,10 @@ export default function AdminPage() {
           {message && <div style={{ fontSize: 12, color: "#e74c3c", marginBottom: 12 }}>{message}</div>}
           <button
             onClick={handleLogin}
-            style={{ background: v.navy, color: "#fff", border: "none", padding: "12px 24px", fontSize: 13, fontWeight: 500, cursor: "pointer", width: "100%", fontFamily: "'DM Sans', sans-serif" }}
+            disabled={loading}
+            style={{ background: loading ? "#9aaabb" : v.navy, color: "#fff", border: "none", padding: "12px 24px", fontSize: 13, fontWeight: 500, cursor: loading ? "not-allowed" : "pointer", width: "100%", fontFamily: "'DM Sans', sans-serif" }}
           >
-            Sign in
+            {loading ? "Signing in..." : "Sign in"}
           </button>
         </div>
       </div>
@@ -110,11 +128,11 @@ export default function AdminPage() {
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", minHeight: "100vh", background: v.bgSoft }}>
-      
+
       {/* Header */}
       <div style={{ background: v.navy, padding: "16px 48px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, color: "#fff" }}>The Verita — Admin</div>
-        <button onClick={() => setAuthenticated(false)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.3)", color: "#a8c8e8", padding: "6px 14px", fontSize: 12, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Sign out</button>
+        <button onClick={() => { setAuthenticated(false); setAdminSecret(""); setPassword(""); }} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.3)", color: "#a8c8e8", padding: "6px 14px", fontSize: 12, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Sign out</button>
       </div>
 
       <div style={{ padding: "48px" }}>
@@ -180,3 +198,5 @@ export default function AdminPage() {
     </div>
   );
 }
+```
+
