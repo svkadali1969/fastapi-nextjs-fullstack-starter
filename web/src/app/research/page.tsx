@@ -17,7 +17,7 @@ const STATS = [
 
 const RESPONSE_BULLETS = [
   { label: "Our Independence", body: "No vendor relationships. No sponsored findings. All policy research published openly. The Verita is focused on three research pillars where independent inquiry is most needed and least available." },
-  { label: "Pillar 01 — Responsible AI", body: "We study what it takes to build responsible AI as a genuine organizational capability — across fairness, transparency, accountability, safety, and human oversight." },
+  { label: "Pillar 01 — Responsible AI", body: "We study what it takes to build responsible AI as a genuine organizational capability — across fairness, transparency, privacy, safety and accountability." },
   { label: "Pillar 02 — AI Governance", body: "We study the governance frameworks organizations can build today — before regulators force the issue — that create resilience and competitive advantage." },
   { label: "Pillar 03 — Future Workforce", body: "We study what genuinely AI-native learning looks like — from curriculum redesign to workforce transformation at organizational scale." },
 ];
@@ -32,7 +32,15 @@ type ResearchOutput = {
   display_order: number;
 };
 
+type ResearchOutput = {
+  id: string;
+  title: string;
+  status: string;
+  date: string;
+  pdf_url: string | null;
+  display_order: number;
 
+};
 
 type Pillar = {
   id: string;
@@ -144,22 +152,21 @@ export default function ResearchPage() {
       {selectedOutput && <Modal output={selectedOutput} onClose={() => setSelectedOutput(null)} />}
 
       {/* Hero — problem left / response right */}
-      <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ background: v.bgSoft, padding: "64px 48px", borderRight: `1px solid ${v.border}` }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 20 }}>The Market Reality</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 32 }}>
-            The AI investment is happening.<br />The results are not.
+      <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}`, alignItems: "start" }}>
+
+      {/* Left — Image */}
+      <div style={{ background: v.bgSoft, borderRight: `1px solid ${v.border}`, display: "flex", flexDirection: "column", padding: "64px 48px 0" }}>
+        <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase" as const, color: "#c0392b", fontWeight: 500, marginBottom: 16 }}>The Market Reality</div>
+         <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20 }}>
+              The AI investment is happening. <br />The results are not.
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {STATS.map((s) => (
-              <div key={s.num} style={{ background: "#fff", padding: "20px 24px", borderLeft: `3px solid ${v.blue}` }}>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 40, fontWeight: 600, color: v.navy, lineHeight: 1 }}>{s.num}</div>
-                <div style={{ fontSize: 13, color: "#4a6a8a", lineHeight: 1.5, marginTop: 6 }}>{s.label}</div>
-                <div style={{ fontSize: 11, color: "#9aaabb", marginTop: 4, fontStyle: "italic" }}>{s.source}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <img
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/research_6.png"
+          alt="The AI Readiness Gap"
+          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+        />
+      </div>
+
         <div style={{ background: "#fff", padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20 }}>
@@ -194,8 +201,28 @@ export default function ResearchPage() {
                   &ldquo;{pillar.problem_headline}&rdquo;
                 </div>
                 <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{pillar.problem_body}</p>
-              </div>
-
+                {(() => {
+                  const images: Record<string, string> = {
+                    'responsible-ai': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/resp_ai_shield_12.png',
+                    'ai-governance': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/governance_11.png',
+                    'future-workforce': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/education_gap_11.png',
+                  };
+                  return images[pillar.slug] ? (
+                    <img
+                      src={images[pillar.slug]}
+                      alt={pillar.title}  
+                      style={{ 
+                        width: "100%", 
+                        maxHeight: 280,
+                        objectFit: "contain", 
+                        objectPosition: "center",
+                        display: "block", 
+                        borderRadius: 4, 
+                        marginTop: 32
+                      }}                    />
+                  ) : null;
+                })()}
+                </div>
               {/* Right — Our Research with table */}
               <div style={{ background: index % 2 === 0 ? v.bgSoft : "#fff", padding: "56px 48px" }}>
                 <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 14 }}>{pillar.response_label} · {pillar.number}</div>

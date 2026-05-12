@@ -147,16 +147,30 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
     */}
     
     
-      {/* Ticker */}
-      <div style={{ background: "#1a3a5c", padding: "12px 48px", display: "flex", gap: 48, overflowX: "auto" }}>
-        {tickerItems.map((item) => (
-          <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#5a9ad4", flexShrink: 0 }} />
-            <span style={{ fontSize: 12, color: "#c8d8e8", whiteSpace: "nowrap", letterSpacing: 0.3 }}>{item}</span>
+        {/* Ticker */}
+        <div style={{ background: "#1a3a5c", padding: "12px 0", overflow: "hidden", position: "relative" }}>
+          <div style={{
+            display: "flex",
+            gap: 64,
+            animation: "ticker 30s linear infinite",
+            whiteSpace: "nowrap" as const,
+            willChange: "transform"
+          }}>
+            {/* Duplicate items for seamless loop */}
+            {[...tickerItems, ...tickerItems].map((item, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#5a9ad4", flexShrink: 0 }} />
+                <span style={{ fontSize: 12, color: "#c8d8e8", letterSpacing: 0.3 }}>{item}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
+          <style>{`
+            @keyframes ticker {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+          `}</style>
+        </div>
       <Footer />
     </div>
   );
