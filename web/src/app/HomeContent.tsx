@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import ChatWidget from "./ChatWidget";
 import LatestSection from "./LatestSection";
+import EducationCTA from "./EducationCTA";
 
 
 const RESPONSES: Record<string, string> = {
@@ -126,9 +127,11 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
 
       <LatestSection />
 
+      <EducationCTA />
+
       {/* Chat */}
 
-      {/* Research Agent Section */}
+      {/* Research Agent Section 
       <section style={{ padding: "64px 48px 0", textAlign: "center" }}>
         <p style={{ fontSize: 10, letterSpacing: 3.5, textTransform: "uppercase", color: "#5a8ab8", fontWeight: 600, marginBottom: 18 }}>
           AI Research Agent
@@ -141,6 +144,7 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
         </p>
         <ChatWidget />
     </section>
+    */}
     
     
       {/* Ticker */}
