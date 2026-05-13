@@ -151,7 +151,7 @@ export default function EducationPage() {
             Schools are debating AI policy while curricula age. Organizations are deploying AI while their people struggle to keep pace. Senior leaders are making consequential AI decisions without the capability to evaluate them. The problem is not awareness — it is preparation. And preparation requires research that is honest about what is actually broken.
           </p>
           <img
-          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_hero_2.png"
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_hero_1.gif"
           alt="The AI Readiness Gap"
           style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
         />
@@ -197,7 +197,7 @@ export default function EducationPage() {
                   const images: Record<string, string> = {
                     'students': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_1.png',
                     'workforce': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_2.png',
-                    'leadership': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_3.png',
+                    'leadership': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_3x.png',
                   };
                   return images[section.slug] ? (
                     <img
