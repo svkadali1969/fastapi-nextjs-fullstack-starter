@@ -203,8 +203,8 @@ export default function ResearchPage() {
                 <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{pillar.problem_body}</p>
                 {(() => {
                   const images: Record<string, string> = {
-                    'responsible-ai': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/resp_ai_shield_12.png',
-                    'ai-governance': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/governance_11.png',
+                    'responsible-ai': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/resp_ai_shield_169_1.png',
+                    'ai-governance': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/governance_169_1.png',
                     'future-workforce': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/education_gap_11.png',
                   };
                   return images[pillar.slug] ? (

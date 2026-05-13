@@ -150,6 +150,11 @@ export default function EducationPage() {
           <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8 }}>
             Schools are debating AI policy while curricula age. Organizations are deploying AI while their people struggle to keep pace. Senior leaders are making consequential AI decisions without the capability to evaluate them. The problem is not awareness — it is preparation. And preparation requires research that is honest about what is actually broken.
           </p>
+          <img
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_hero_2.png"
+          alt="The AI Readiness Gap"
+          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+        />
         </div>
         <div style={{ background: "#fff", padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
@@ -187,7 +192,21 @@ export default function EducationPage() {
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 16, fontStyle: "italic" }}>
                 &ldquo;{section.problem_headline}&rdquo;
               </div>
-              <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{section.problem_body}</p>
+                <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{section.problem_body}</p>
+                {(() => {
+                  const images: Record<string, string> = {
+                    'students': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_1.png',
+                    'workforce': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_2.png',
+                    'leadership': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_row_3.png',
+                  };
+                  return images[section.slug] ? (
+                    <img
+                      src={images[section.slug]}
+                      alt={section.audience}
+                      style={{ width: "75%", display: "block", borderRadius: 4, marginTop: 32, marginLeft: "auto", marginRight: "auto" }}
+                    />
+                  ) : null;
+                })()}
             </div>
 
             {/* Right — Course Table */}
@@ -281,23 +300,23 @@ export default function EducationPage() {
                   <textarea rows={3} placeholder="Tell us about your organization and what you are trying to achieve" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: "100%", padding: "12px 14px", border: `1px solid #dce6f0`, fontSize: 14, fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", background: "#fff", outline: "none", resize: "vertical", boxSizing: "border-box" as const }} />
                 </div>
                 <button onClick={async () => {
-                    if (!formData.name.trim()) { alert("Please enter your name"); return; }
-                    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { alert("Please enter a valid email"); return; }
-                    if (!formData.message.trim()) { alert("Please enter a message"); return; }
-                    try {
-                      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          name: formData.name,
-                          email: formData.email,
-                          org: formData.org,
-                          role: formData.role,
-                          interest: formData.interest,
-                          message: formData.message,
-                          form_type: "education"
-                        })
-                      });
+                  if (!formData.name.trim()) { alert("Please enter your name"); return; }
+                  if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { alert("Please enter a valid email"); return; }
+                  if (!formData.message.trim()) { alert("Please enter a message"); return; }
+                  try {
+                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        org: formData.org,
+                        role: formData.role,
+                        interest: formData.interest,
+                        message: formData.message,
+                        form_type: "education"
+                      })
+                    });
                     if (res.ok) setSubmitted(true);
                   } catch (e) {
                     setSubmitted(true);
