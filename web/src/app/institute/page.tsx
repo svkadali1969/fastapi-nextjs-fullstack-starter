@@ -38,11 +38,12 @@ export default async function InstitutePage() {
 
       {/* Hero */}
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ background: v.navy, padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Institute</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, fontWeight: 600, color: "#fff", lineHeight: 1.2, marginBottom: 20 }}>
-            Built by people who believe independent research is the most valuable thing an institution can produce.
-          </div>
+        <div style={{ background: v.bluePale, padding: "64px 48px" }}>
+          <img
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/institute_1.png"
+          alt="The AI Readiness Gap"
+          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+        />
         </div>
         <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>Who We Are Building</div>

@@ -18,9 +18,9 @@ const FOOTER_LINKS = {
   ],
   Education: [
     { label: "AI Education", href: "/education" },
-    { label: "AI Foundations Certificate", href: "/education#students" },
-    { label: "AI in Practice", href: "/education#workforce" },
-    { label: "Executive AI Leadership", href: "/education#leadership" },
+    { label: "Programs For Sutdents", href: "/education#students" },
+    { label: "Programs For Workforce", href: "/education#workforce" },
+    { label: "Programs For Leadership", href: "/education#leadership" },
   ],
   Institute: [
     { label: "Our Purpose", href: "/about" },

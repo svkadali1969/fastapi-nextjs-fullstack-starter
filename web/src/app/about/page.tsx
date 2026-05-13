@@ -40,18 +40,11 @@ export default function AboutPage() {
 
         {/* Left — Four Principles */}
         <div style={{ background: v.navy, padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 32 }}>What We Stand For</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {PRINCIPLES.map((p) => (
-              <div key={p.num} style={{ background: "rgba(255,255,255,0.06)", padding: "20px 24px", borderLeft: `3px solid ${v.blueLight}` }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 13, color: v.blueLight, fontWeight: 600 }}>{p.num}</span>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: "#fff", letterSpacing: 0.5 }}>{p.title}</span>
-                </div>
-                <div style={{ fontSize: 13, color: "#a8c8e8", lineHeight: 1.65 }}>{p.body}</div>
-              </div>
-            ))}
-          </div>
+        <img
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/whoweare_3.png"
+          alt="The AI Readiness Gap"
+          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+        />
         </div>
 
         {/* Right — Who We Are */}
