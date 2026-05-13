@@ -120,12 +120,14 @@ function Modal({ program, onClose }: { program: Program; onClose: () => void }) 
             Full program details coming soon.
           </p>
         )}
-
-        <div style={{ borderTop: `1px solid ${v.border}`, paddingTop: 20, display: "flex", gap: 12, flexWrap: "wrap" as const }}>
-          <a href="mailto:education@theveritaai.com" style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}>
-            Enquire about this program →
+        <div style={{ borderTop: `1px solid ${v.border}`, paddingTop: 20 }}>
+          <a 
+            href={`mailto:education@theveritaai.com?subject=Registration Interest: ${program.name}`}
+            style={{ background: v.navy, color: "#fff", padding: "12px 24px", fontSize: 13, textDecoration: "none", fontWeight: 500, display: "inline-block" }}
+          >
+            Register your interest →
           </a>
-        </div>
+        </div>        
       </div>
     </div>
   );
