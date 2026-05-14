@@ -205,7 +205,7 @@ export default function ResearchPage() {
                   const images: Record<string, string> = {
                     'responsible-ai': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/resp_ai_shield_169_1.png',
                     'ai-governance': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/governance_169_1.png',
-                    'future-workforce': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/education_gap_11.png',
+                    'future-workforce': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/education_gap_2.png',
                   };
                   return images[pillar.slug] ? (
                     <img
