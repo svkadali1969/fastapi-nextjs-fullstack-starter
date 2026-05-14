@@ -39,16 +39,16 @@ export default function AboutPage() {
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
 
         {/* Left — Four Principles */}
-        <div style={{ background: v.navy, padding: "64px 48px" }}>
+        <div style={{ background: v.navy, padding: "32px 48px" }}>
         <img
           src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/whoweare_3.png"
           alt="The AI Readiness Gap"
-          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+          style={{ width: "100%", objectFit: "contain", objectPosition: "center center", display: "block", marginTop: "auto" }}
         />
         </div>
 
         {/* Right — Who We Are */}
-        <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
+        <div style={{ background: v.bgSoft, padding: "32px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>About The Verita</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 24 }}>
             Independent.<br />By design.<br />By necessity.
