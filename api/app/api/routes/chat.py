@@ -43,8 +43,8 @@ def search_similar_content(query_embedding: list, limit: int = 5) -> list:
         return []
 
 def get_full_context() -> str:
-    pillars = supabase.table('pillars').select('title, response_headline, response_body, problem_headline').order('display_order').execute()
-    education = supabase.table('education_sections').select('audience, program_name, program_sub').order('display_order').execute()
+    pillars = supabase.table('pillars').select('title, response_body').order('display_order').execute()
+    programs = supabase.table('education_programs').select('name, duration, format, status, education_sections(audience)').order('display_order').execute()
     
     context = "THE VERITA INSTITUTE - Research and Education:\n\n"
     context += "RESEARCH PILLARS:\n"
@@ -53,8 +53,9 @@ def get_full_context() -> str:
         context += f"  {p['response_body']}\n"
     
     context += "\n\nEDUCATION PROGRAMS:\n"
-    for e in education.data:
-        context += f"\n{e['program_name']} (for {e['audience']}): {e['program_sub']}\n"
+    for p in programs.data:
+        audience = p.get('education_sections', {}).get('audience', '') if p.get('education_sections') else ''
+        context += f"\n{p['name']} ({p.get('format', '')} · {p.get('duration', '')} · for {audience}): status: {p['status']}\n"
     
     return context
 

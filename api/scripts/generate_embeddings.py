@@ -43,17 +43,17 @@ def generate_embeddings():
         ).eq('id', item['id']).execute()
         print(f"  ✓ {item['title'][:50]}")
 
-    # Embed education items
-    edu_items = supabase.table('education_items').select('id, title, description').execute()
-    print(f"\nGenerating embeddings for {len(edu_items.data)} education items...")
-    
-    for item in edu_items.data:
-        text = f"{item['title']}. {item.get('description') or ''}"
-        embedding = get_embedding(text)
-        supabase.table('education_items').update(
-            {'embedding': embedding}
-        ).eq('id', item['id']).execute()
-        print(f"  ✓ {item['title'][:50]}")
+# Embed education programs
+edu_programs = supabase.table('education_programs').select('id, name, description').execute()
+print(f"\nGenerating embeddings for {len(edu_programs.data)} education programs...")
+
+for item in edu_programs.data:
+    text = f"{item['name']}. {item.get('description') or ''}"
+    embedding = get_embedding(text)
+    supabase.table('education_programs').update(
+        {'embedding': embedding}
+    ).eq('id', item['id']).execute()
+    print(f"  ✓ {item['name'][:50]}")
 
     print("\n✅ All embeddings generated successfully!")
 
