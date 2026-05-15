@@ -176,20 +176,25 @@ export default function EducationCTA() {
     @media (max-width: 768px) {
       .two-col-grid {
         grid-template-columns: 1fr !important;
+        width: 100% !important;
+        max-width: 100% !important;
       }
       .two-col-grid > div:first-child {
         border-right: none !important;
         border-bottom: 3px solid ${v.blueLight} !important;
         min-height: 240px !important;
+        width: 100% !important;
+        max-width: 100% !important;
       }
       .two-col-grid > div:last-child {
-        padding: 32px 20px !important;
+        padding: 24px 16px !important;
       }
       .section-header {
-        padding: 48px 20px 32px !important;
+        padding: 40px 16px 24px !important;
       }
       .programs-container {
-        padding: 32px 20px 40px !important;
+        padding: 20px 0 32px !important;
+        gap: 0 !important;
       }
     }
   `;
@@ -211,9 +216,9 @@ export default function EducationCTA() {
         </div>
 
         {/* Program rows */}
-        <div className="programs-container" style={{ padding: "40px 48px 48px", display: "flex", flexDirection: "column", gap: 24, background: v.bgSoft }}>
+        <div className="programs-container" style={{ padding: "40px 48px 48px", display: "flex", flexDirection: "column", gap: 24, background: v.bgSoft, overflow: "visible" }}>
           {programs.map((program, index) => (
-            <div key={program.id} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+            <div key={program.id} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "visible", width: "100%", maxWidth: "100%" }}>
 
               {/* Left — Image */}
               <div style={{
@@ -221,7 +226,11 @@ export default function EducationCTA() {
                 background: index % 2 === 0 ? v.bgSoft : v.navy,
                 minHeight: 280,
                 width: "100%",
-                boxSizing: "border-box" as const
+                maxWidth: "100%",
+                minWidth: 0,
+                boxSizing: "border-box" as const,
+                overflow: "hidden",
+                position: "relative" as const
               }}>
                 {images[program.slug] ? (
                   <img
