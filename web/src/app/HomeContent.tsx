@@ -45,6 +45,18 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
   const [thinking, setThinking] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
 
+  const mobileStyles = `
+    @media (max-width: 768px) {
+      .focus-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+      }
+      .focus-grid > div {
+        padding: 32px 20px !important;
+      }
+    }
+  `;
+
   async function sendMessage(text?: string) {
     const query = text ?? input.trim();
     if (!query) return;
@@ -69,28 +81,27 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#fff" }}>
+      <style>{mobileStyles}</style>
       <Nav />
 
       {/* Hero */}
-      <section style={{ padding: "72px 48px 0", textAlign: "center", borderBottom: "1px solid #e8edf2" }}>
+      <section style={{ padding: "72px 48px 48px", textAlign: "center" }}>
         <p style={{ fontSize: 10, letterSpacing: 3.5, textTransform: "uppercase", color: "#5a8ab8", fontWeight: 600, marginBottom: 18 }}>
           Independent AI Research &amp; Education
         </p>
         <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 64, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.05, marginBottom: 16 }}>
           Truth in AI.
         </h1>
-        <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto 36px" }}>
+        <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto" }}>
           Advancing AI-literate workforces through independent research and future-ready education.
         </p>
-
-
       </section>
 
       {/* Focus Areas */}
       <div className="focus-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#e8edf2" }}>
 
         {/* AI Research */}
-        <div style={{ background: "#fff", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
+        <div style={{ background: "#fff", padding: "48px 40px", display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 600, marginBottom: 20 }}>AI Research</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
             Beyond the Model: Who Is Asking the Harder Questions?
@@ -107,7 +118,7 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
         </div>
 
         {/* AI Education */}
-        <div style={{ background: "#f6f9fc", padding: "48px 40px", borderLeft: "4px solid #1a3a5c", display: "flex", flexDirection: "column" }}>
+        <div style={{ background: "#f6f9fc", padding: "48px 40px", display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: "#5a9ad4", fontWeight: 600, marginBottom: 20 }}>AI Education</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: "#1a3a5c", lineHeight: 1.2, marginBottom: 20 }}>
             Are We Educating Students for a World That No Longer Exists?
