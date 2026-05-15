@@ -220,13 +220,15 @@ export default function EducationCTA() {
                 overflow: "hidden",
                 borderRight: `3px solid ${v.blueLight}`,
                 background: index % 2 === 0 ? v.bgSoft : v.navy,
-                minHeight: 280
+                minHeight: 280,
+                width: "100%",
+                boxSizing: "border-box" as const
               }}>
                 {images[program.slug] ? (
                   <img
                     src={images[program.slug]}
                     alt={program.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", maxWidth: "100%" }}
                   />
                 ) : (
                   <div style={{ height: "100%", minHeight: 280, display: "flex", alignItems: "center", justifyContent: "center" }}>
