@@ -213,11 +213,10 @@ export default function EducationCTA() {
         {/* Program rows */}
         <div className="programs-container" style={{ padding: "40px 48px 48px", display: "flex", flexDirection: "column", gap: 24, background: v.bgSoft }}>
           {programs.map((program, index) => (
-            <div key={program.id} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden" }}>
+            <div key={program.id} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
 
               {/* Left — Image */}
               <div style={{
-                overflow: "hidden",
                 borderRight: `3px solid ${v.blueLight}`,
                 background: index % 2 === 0 ? v.bgSoft : v.navy,
                 minHeight: 280,
