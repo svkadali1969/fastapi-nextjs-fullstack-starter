@@ -116,14 +116,11 @@ function Modal({ program, onClose }: { program: Program; onClose: () => void }) 
   );
 }
 
-
-
 export default function EducationCTA() {
   const [programs, setPrograms] = useState<Program[]>([]);
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
   const [loading, setLoading] = useState(true);
 
-  
   useEffect(() => {
     async function fetchData() {
       // Fetch programs with section info
@@ -135,7 +132,6 @@ export default function EducationCTA() {
         `)
         .eq('show_on_homepage', true)
         .order('homepage_order');
-
 
       if (!programsData) return;
 
@@ -175,115 +171,142 @@ export default function EducationCTA() {
     'ai-launch-pad': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/studen1.png',
   };
 
+  // Mobile breakpoint media query
+  const mobileStyle = `
+    @media (max-width: 768px) {
+      .two-col-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .two-col-grid > div:first-child {
+        border-right: none !important;
+        border-bottom: 3px solid ${v.blueLight} !important;
+        min-height: 240px !important;
+      }
+      .two-col-grid > div:last-child {
+        padding: 32px 20px !important;
+      }
+      .section-header {
+        padding: 48px 20px 32px !important;
+      }
+      .programs-container {
+        padding: 32px 20px 40px !important;
+      }
+    }
+  `;
+
   return (
-    <section style={{ borderBottom: `1px solid ${v.border}` }}>
-      {selectedProgram && <Modal program={selectedProgram} onClose={() => setSelectedProgram(null)} />}
+    <>
+      <style>{mobileStyle}</style>
+      <section style={{ borderBottom: `1px solid ${v.border}` }}>
+        {selectedProgram && <Modal program={selectedProgram} onClose={() => setSelectedProgram(null)} />}
 
-      {/* Section header */}
-      <div style={{ padding: "64px 48px 40px", background: "#fff", borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: v.blueLight, fontWeight: 500, marginBottom: 12 }}>
-          Education Programs
-        </div>
-        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2 }}>
-          Education built for the AI era.
-        </div>
-      </div>
-
-      {/* Program rows */}
-      <div style={{ padding: "40px 48px 48px", display: "flex", flexDirection: "column", gap: 24, background: v.bgSoft }}>
-        {programs.map((program, index) => (
-          <div key={program.id} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden" }}>
-
-            {/* Left — Image */}
-            <div style={{
-              overflow: "hidden",
-              borderRight: `3px solid ${v.blueLight}`,
-              background: index % 2 === 0 ? v.bgSoft : v.navy
-            }}>
-              {images[program.slug] ? (
-                <img
-                  src={images[program.slug]}
-                  alt={program.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", minHeight: 380 }}
-                />
-              ) : (
-                <div style={{ minHeight: 380, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, color: index % 2 === 0 ? v.border : "rgba(255,255,255,0.1)", fontWeight: 600 }}>
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Right — Content */}
-            <div style={{
-              background: index % 2 === 0 ? v.navy : "#fff",
-              padding: "40px 48px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center"
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: index % 2 === 0 ? "#4ade80" : v.blue, flexShrink: 0 }} />
-                <span style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase" as const, color: index % 2 === 0 ? "#4ade80" : v.blue, fontWeight: 500 }}>
-                  {program.homepage_eyebrow || `${program.format} · ${program.duration}`}
-                </span>
-              </div>
-
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 600, color: index % 2 === 0 ? "#fff" : v.navy, lineHeight: 1.2, marginBottom: 16 }}>
-                {program.name}
-              </div>
-
-              <p style={{ fontSize: 14, color: index % 2 === 0 ? "#a8c8e8" : v.textBody, lineHeight: 1.75, marginBottom: 20 }}>
-                {program.homepage_body || program.description}
-              </p>
-
-              <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" as const }}>
-                {(program.homepage_tags || []).map((d: string) => (
-                  <span key={d} style={{
-                    fontSize: 11,
-                    color: index % 2 === 0 ? "#5a9ad4" : v.blue,
-                    background: index % 2 === 0 ? "rgba(90,154,212,0.15)" : v.bluePale,
-                    padding: "4px 12px",
-                    fontWeight: 500
-                  }}>{d}</span>
-                ))}
-              </div>
-
-              {program.homepage_differentiator && (
-                <div style={{
-                  fontSize: 13,
-                  color: index % 2 === 0 ? "#7aaac8" : "#6a7a8a",
-                  fontStyle: "italic",
-                  marginBottom: 28,
-                  paddingTop: 16,
-                  borderTop: index % 2 === 0 ? "1px solid rgba(255,255,255,0.1)" : `1px solid ${v.border}`
-                }}>
-                  {program.homepage_differentiator}
-                </div>
-              )}
-
-              <button
-                onClick={() => setSelectedProgram(program)}
-                style={{
-                  background: index % 2 === 0 ? "#fff" : v.navy,
-                  color: index % 2 === 0 ? v.navy : "#fff",
-                  padding: "13px 28px",
-                  fontSize: 13,
-                  fontWeight: 600,
-                  border: "none",
-                  cursor: "pointer",
-                  fontFamily: "'DM Sans', sans-serif",
-                  display: "inline-block",
-                  alignSelf: "flex-start"
-                }}
-              >
-                View details →
-              </button>
-            </div>
+        {/* Section header */}
+        <div className="section-header" style={{ padding: "64px 48px 40px", background: "#fff", borderBottom: `1px solid ${v.border}` }}>
+          <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase" as const, color: v.blueLight, fontWeight: 500, marginBottom: 12 }}>
+            Education Programs
           </div>
-        ))}
-      </div>
-    </section>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2 }}>
+            Education built for the AI era.
+          </div>
+        </div>
+
+        {/* Program rows */}
+        <div className="programs-container" style={{ padding: "40px 48px 48px", display: "flex", flexDirection: "column", gap: 24, background: v.bgSoft }}>
+          {programs.map((program, index) => (
+            <div key={program.id} className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden" }}>
+
+              {/* Left — Image */}
+              <div style={{
+                overflow: "hidden",
+                borderRight: `3px solid ${v.blueLight}`,
+                background: index % 2 === 0 ? v.bgSoft : v.navy,
+                minHeight: 280
+              }}>
+                {images[program.slug] ? (
+                  <img
+                    src={images[program.slug]}
+                    alt={program.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                  />
+                ) : (
+                  <div style={{ height: "100%", minHeight: 280, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, color: index % 2 === 0 ? v.border : "rgba(255,255,255,0.1)", fontWeight: 600 }}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Right — Content */}
+              <div style={{
+                background: index % 2 === 0 ? v.navy : "#fff",
+                padding: "40px 48px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center"
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: index % 2 === 0 ? "#4ade80" : v.blue, flexShrink: 0 }} />
+                  <span style={{ fontSize: 11, letterSpacing: 2, textTransform: "uppercase" as const, color: index % 2 === 0 ? "#4ade80" : v.blue, fontWeight: 500 }}>
+                    {program.homepage_eyebrow || `${program.format} · ${program.duration}`}
+                  </span>
+                </div>
+
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 600, color: index % 2 === 0 ? "#fff" : v.navy, lineHeight: 1.2, marginBottom: 16 }}>
+                  {program.name}
+                </div>
+
+                <p style={{ fontSize: 14, color: index % 2 === 0 ? "#a8c8e8" : v.textBody, lineHeight: 1.75, marginBottom: 20 }}>
+                  {program.homepage_body || program.description}
+                </p>
+
+                <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" as const }}>
+                  {(program.homepage_tags || []).map((d: string) => (
+                    <span key={d} style={{
+                      fontSize: 11,
+                      color: index % 2 === 0 ? "#5a9ad4" : v.blue,
+                      background: index % 2 === 0 ? "rgba(90,154,212,0.15)" : v.bluePale,
+                      padding: "4px 12px",
+                      fontWeight: 500
+                    }}>{d}</span>
+                  ))}
+                </div>
+
+                {program.homepage_differentiator && (
+                  <div style={{
+                    fontSize: 13,
+                    color: index % 2 === 0 ? "#7aaac8" : "#6a7a8a",
+                    fontStyle: "italic",
+                    marginBottom: 28,
+                    paddingTop: 16,
+                    borderTop: index % 2 === 0 ? "1px solid rgba(255,255,255,0.1)" : `1px solid ${v.border}`
+                  }}>
+                    {program.homepage_differentiator}
+                  </div>
+                )}
+
+                <button
+                  onClick={() => setSelectedProgram(program)}
+                  style={{
+                    background: index % 2 === 0 ? "#fff" : v.navy,
+                    color: index % 2 === 0 ? v.navy : "#fff",
+                    padding: "13px 28px",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    border: "none",
+                    cursor: "pointer",
+                    fontFamily: "'DM Sans', sans-serif",
+                    display: "inline-block",
+                    alignSelf: "flex-start"
+                  }}
+                >
+                  View details →
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
