@@ -227,21 +227,21 @@ function getSorted(items: Publication[]) {
       {/* Table */}
       <section style={{ padding: "0 48px 72px" }}>
         {/* Table header */}
-        <div style={{ display: "grid", gridTemplateColumns: "80px 140px 1fr 110px 100px", gap: 16, padding: "16px 20px", borderBottom: `2px solid ${v.border}`, marginTop: 32 }}>
-          {[
-            { label: "Year", field: "publication_year" as const },
-            { label: "Pillar", field: "pillar" as const },
-            { label: "Title", field: null },
-            { label: "Status", field: "status" as const },
-            { label: "", field: null },
-          ].map((h) => (
-            <div
-              key={h.label}
-              onClick={() => h.field && handleSort(h.field)}
-              style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase" as const, color: h.field ? v.blue : "#9aaabb", fontWeight: 500, cursor: h.field ? "pointer" : "default", display: "flex", alignItems: "center", gap: 4 }}
-            >
-              {h.label}
-              {h.field && (
+        <div className="pub-table-header" style={{ display: "grid", gridTemplateColumns: "80px 140px 1fr 110px 100px", gap: 16, padding: "16px 20px", borderBottom: `2px solid ${v.border}`, marginTop: 32 }}>
+        {[
+          { label: "Year", field: "publication_year" as const, hide: false },
+          { label: "Pillar", field: "pillar" as const, hide: true },
+          { label: "Title", field: null, hide: false },
+          { label: "Status", field: "status" as const, hide: true },
+          { label: "", field: null, hide: false },
+        ].map((h) => (
+          <div
+            key={h.label}
+            className={h.hide ? "pub-col-hide" : ""}
+            onClick={() => h.field && handleSort(h.field)}
+            style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase" as const, color: h.field ? v.blue : "#9aaabb", fontWeight: 500, cursor: h.field ? "pointer" : "default", display: "flex", alignItems: "center", gap: 4 }}
+          >      {h.label}
+                    {h.field && (
                 <span style={{ color: sortField === h.field ? v.blue : "#9aaabb" }}>
                   {sortField === h.field ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
                 </span>
@@ -265,17 +265,18 @@ function getSorted(items: Publication[]) {
               return (
                 <div
                   key={pub.id}
+                  className="pub-table-row"
                   onClick={() => setSelectedPub(pub)}
                   style={{ display: "grid", gridTemplateColumns: "80px 140px 1fr 110px 100px", gap: 16, padding: "16px 20px", background: v.bgSoft, borderLeft: `3px solid ${pillarColor}`, alignItems: "center", cursor: "pointer" }}
                 >
                   <div style={{ fontSize: 13, color: "#6a7a8a" }}>{pub.publication_year}</div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <div className="pub-col-hide" style={{ display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 8, height: 8, borderRadius: "50%", background: pillarColor, flexShrink: 0, display: "inline-block" }} />
                     <span style={{ fontSize: 12, color: "#6a7a8a", fontWeight: 500, lineHeight: 1.3 }}>{pillarName}</span>
                   </div>
                   <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 600, color: v.navy, lineHeight: 1.4 }}>{pub.title}</div>
-                  <div><StatusBadge status={pub.status} /></div>
-                  <div style={{ fontSize: 12, color: v.blue, fontWeight: 500 }}>View details →</div>
+                  <div className="pub-col-hide"><StatusBadge status={pub.status} /></div>
+                  <div style={{ fontSize: 12, color: v.blue, fontWeight: 500 }}>View →</div>
                 </div>
               );
             })
@@ -290,7 +291,13 @@ function getSorted(items: Publication[]) {
           </div>
         )}
       </section>
-
+      <style>{`
+        @media (max-width: 768px) {
+          .pub-col-hide { display: none !important; }
+          .pub-table-header { grid-template-columns: 80px 1fr 80px !important; }
+          .pub-table-row { grid-template-columns: 80px 1fr 80px !important; }
+        }
+      `}</style>
       <Footer />
     </div>
   );

@@ -347,6 +347,14 @@ export default function ResearchPage() {
       </div>
 
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          .two-col-grid { grid-template-columns: 1fr !important; }
+          .edu-col-hide { display: none !important; }
+          .edu-table-header { grid-template-columns: 3fr 70px 80px 80px !important; }
+          .edu-table-row { grid-template-columns: 3fr 70px 80px 80px !important; }
+        }
+      `}</style>
     </div>
   );
 }

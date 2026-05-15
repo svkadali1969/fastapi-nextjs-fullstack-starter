@@ -276,26 +276,28 @@ export default function EducationPage() {
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 24 }}>{section.program_name}</div>
 
               {/* Table header */}
-              <div style={{ display: "grid", gridTemplateColumns: "3fr 70px 80px 70px 80px 80px", gap: 8, padding: "8px 12px", borderBottom: `2px solid ${v.border}`, marginBottom: 4 }}>
-                {["Course", "Duration", "Effort", "Format", "Status", ""].map((h) => (
-                  <div key={h} style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase" as const, color: "#9aaabb", fontWeight: 500 }}>{h}</div>
-                ))}
-              </div>
+
+            <div className="edu-table-header" style={{ display: "grid", gridTemplateColumns: "3fr 70px 80px 70px 80px 80px", gap: 8, padding: "8px 12px", borderBottom: `2px solid ${v.border}`, marginBottom: 4 }}>
+              {["Course", "Duration", "Effort", "Format", "Status", ""].map((h, i) => (
+                <div key={h} className={i === 2 || i === 3 ? "edu-col-hide" : ""} style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase" as const, color: "#9aaabb", fontWeight: 500 }}>{h}</div>
+              ))}
+            </div>
 
               {/* Program rows */}
               <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 20, maxHeight: 360, overflowY: "auto" }}>
                 {section.programs.map((program) => (
                   <div
                     key={program.id}
+                    className="edu-table-row"
                     style={{ display: "grid", gridTemplateColumns: "3fr 70px 80px 70px 80px 80px", gap: 8, padding: "14px 12px", background: index % 2 === 0 ? "#fff" : v.bgSoft, borderLeft: `3px solid ${v.blue}`, alignItems: "center", cursor: "pointer" }}
                     onClick={() => setSelectedProgram(program)}
                   >
                     <div style={{ fontSize: 13, color: v.navy, fontWeight: 500, lineHeight: 1.4 }}>{program.name}</div>
                     <div style={{ fontSize: 12, color: "#6a7a8a" }}>{program.duration || "TBD"}</div>
-                    <div style={{ fontSize: 12, color: "#6a7a8a" }}>{program.effort || "TBD"}</div>
-                    <div style={{ fontSize: 12, color: "#6a7a8a" }}>{program.format || "TBD"}</div>
+                    <div className="edu-col-hide" style={{ fontSize: 12, color: "#6a7a8a" }}>{program.effort || "TBD"}</div>
+                    <div className="edu-col-hide" style={{ fontSize: 12, color: "#6a7a8a" }}>{program.format || "TBD"}</div>
                     <div><StatusBadge status={program.status} /></div>
-                    <div style={{ fontSize: 12, color: v.blue, fontWeight: 500 }}>View details →</div>
+                    <div style={{ fontSize: 12, color: v.blue, fontWeight: 500 }}>View →</div>
                   </div>
                 ))}
               </div>
@@ -408,7 +410,13 @@ export default function EducationPage() {
           </div>
         </div>
       </section>
-
+      <style>{`
+        @media (max-width: 768px) {
+          .edu-col-hide { display: none !important; }
+          .edu-table-header { grid-template-columns: 3fr 70px 80px 80px !important; }
+          .edu-table-row { grid-template-columns: 3fr 70px 80px 80px !important; }
+        }
+      `}</style>
       <Footer />
     </div>
   );
