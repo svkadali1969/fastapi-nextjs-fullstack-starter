@@ -124,7 +124,7 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
             Are We Educating Students for a World That No Longer Exists?
           </div>
           <p style={{ fontSize: 14, color: "#4a5568", lineHeight: 1.8, marginBottom: 24, flex: 1 }}>
-            Many institutions are still debating whether students should use AI at all. We think that&apos;s the wrong question. The right question is how AI gets integrated into learning — responsibly, critically, and in ways that prepare students for the world they will actually work in. The Verita&apos;s education research studies what curricula need to look like for the AI era: not AI as an add-on subject, but AI woven into how students learn, work, and are assessed every single day.
+            Many institutions are still debating whether students should use AI at all. We think that&apos;s the wrong question. The right question is how AI gets integrated into learning — responsibly, critically, and in ways that prepare students for the world they will actually work in. The Verita&apos;s education research studies what curricula need to look like for the AI era: not AI as an add-on subject, but AI woven into how students learn, work, and are assessed every single day.  Our programs are built by practitioners with decades of business experience and driven by AI research. Our approach is use case driven — every business problem is a candidate for an AI-centric solution, and that is exactly how we teach.
           </p>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#2e75b6", marginBottom: 24, paddingTop: 20, borderTop: "1px solid #e8edf2" }}>
             Not AI as a subject. AI as the environment.
