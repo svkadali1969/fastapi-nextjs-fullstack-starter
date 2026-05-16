@@ -40,7 +40,7 @@ export default async function InstitutePage() {
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
         <div style={{ background: v.bluePale, padding: "64px 48px" }}>
           <img
-          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/institute_2.png"
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/institute_3.png"
           alt="The AI Readiness Gap"
           style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
         />
