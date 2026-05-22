@@ -86,6 +86,7 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
 
       {/* Hero */}
       <section style={{ padding: "72px 48px 48px", textAlign: "center" }}>
+     
         <p style={{ fontSize: 10, letterSpacing: 3.5, textTransform: "uppercase", color: "#5a8ab8", fontWeight: 600, marginBottom: 18 }}>
           Independent AI Research &amp; Education
         </p>
@@ -95,6 +96,13 @@ export default function HomeContent({ tickerItems }: { tickerItems: string[] }) 
         <p style={{ fontSize: 15, color: "#5a7090", lineHeight: 1.7, maxWidth: 520, margin: "0 auto" }}>
           Advancing AI-literate workforces through independent research and future-ready education.
         </p>
+        {/*
+        <img
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/Truth_1.png"
+          alt="Truth in AI"
+          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+        />
+        */}
       </section>
 
       {/* Focus Areas */}

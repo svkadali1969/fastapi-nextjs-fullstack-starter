@@ -39,14 +39,12 @@ export default function PartnerPage() {
 
       {/* Hero */}
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
-        <div style={{ background: v.navy, padding: "64px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>Partner with The Verita</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, fontWeight: 600, color: "#fff", lineHeight: 1.2, marginBottom: 20 }}>
-            The right partnerships shape the research agenda for years to come.
-          </div>
-          <p style={{ fontSize: 14, color: "#a8c8e8", lineHeight: 1.75 }}>
-            The Verita is at a formative stage. Founding partners — universities, enterprises, and policy organizations — will help define what independent AI research looks like for the next decade.
-          </p>
+        <div style={{ background: v.bluePale, padding: "64px 48px" }}>
+          <img
+          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/partner_1.png"
+          alt="The AI Readiness Gap"
+          style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
+        />
         </div>
         <div style={{ background: v.bgSoft, padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>Why Partner with Us</div>
