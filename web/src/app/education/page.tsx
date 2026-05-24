@@ -214,7 +214,7 @@ export default function EducationPage() {
       <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
         <div style={{ background: v.bgSoft, padding: "64px 48px", borderRight: `1px solid ${v.border}` }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#c0392b", fontWeight: 500, marginBottom: 20 }}>The Problem</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20, fontStyle: "italic" }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 20 }}>
             &ldquo;The workforce AI needs does not exist yet. And the institutions responsible for building it are not moving fast enough.&rdquo;
           </div>
           <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8 }}>
@@ -228,7 +228,7 @@ export default function EducationPage() {
         </div>
         <div style={{ background: "#fff", padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.25, marginBottom: 20 }}>
             Our education programs start from a position, not a question.
           </div>
           <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8, marginBottom: 24 }}>
