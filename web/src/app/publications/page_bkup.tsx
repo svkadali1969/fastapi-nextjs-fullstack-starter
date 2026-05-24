@@ -188,28 +188,14 @@ function getSorted(items: Publication[]) {
       {selectedPub && <Modal pub={selectedPub} onClose={() => setSelectedPub(null)} />}
 
       {/* Hero */}
-      <section className="two-col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: `1px solid ${v.border}` }}>
-
-        {/* Left — Four Principles */}
-        <div style={{ background: v.bluePale, padding: "32px 48px" }}>
-        <img
-          src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/publications_2.png"
-          alt="Our Publications"
-          style={{ width: "100%", objectFit: "contain", objectPosition: "center center", display: "block", marginTop: "auto" }}
-        />
+      <section style={{ padding: "64px 48px 56px", borderBottom: `1px solid ${v.border}`, background: v.bgSoft }}>
+        <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 16 }}>Publications</div>
+        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, fontWeight: 600, color: v.navy, lineHeight: 1.1, marginBottom: 16, maxWidth: 640 }}>
+          A chronological record of The Verita&apos;s independent research.
         </div>
-
-        {/* Right — Who We Are */}
-        <div style={{ background: v.bgSoft, padding: "32px 48px" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 600, marginBottom: 20 }}>Our Publications</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: v.navy, lineHeight: 1.2, marginBottom: 24 }}>
-            Insights.<br />Frameworks.<br />Education.
-          </div>
-          <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.85, marginBottom: 20 }}>
-            We don't implement, consult, or sell platforms. We research. Our independent inquiry into responsible AI, AI governance, and the future workforce produces three distinct outputs: insights that help businesses use AI effectively and responsibly, frameworks that guide ethical deployment, and education programs that build organizational capability—all before regulation forces the issue.
-          </p>
-        </div>
-
+        <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8, maxWidth: 560 }}>
+          All policy research is published openly. Applied corporate research may be proprietary for up to six months — after which it is published here.
+        </p>
       </section>
 
       {/* Search and filters */}
