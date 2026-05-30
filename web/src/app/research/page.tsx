@@ -201,6 +201,8 @@ export default function ResearchPage() {
                   &ldquo;{pillar.problem_headline}&rdquo;
                 </div>
                 <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{pillar.problem_body}</p>
+                <div style={{ background: v.navy, padding: "42px 24px" }}>
+
                 {(() => {
                   const images: Record<string, string> = {
                     'responsible-ai': 'https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/resp_ai_shield_169_1.png',
@@ -218,10 +220,11 @@ export default function ResearchPage() {
                         objectPosition: "center",
                         display: "block", 
                         borderRadius: 4, 
-                        marginTop: 32
+                        marginTop: "auto"
                       }}                    />
                   ) : null;
                 })()}
+                </div>
                 </div>
               {/* Right — Our Research with table */}
               <div style={{ background: index % 2 === 0 ? v.bgSoft : "#fff", padding: "56px 48px" }}>

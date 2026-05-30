@@ -220,11 +220,13 @@ export default function EducationPage() {
           <p style={{ fontSize: 15, color: v.textBody, lineHeight: 1.8 }}>
             Schools are debating AI policy while curricula age. Organizations are deploying AI while their people struggle to keep pace. Senior leaders are making consequential AI decisions without the capability to evaluate them. The problem is not awareness — it is preparation. And preparation requires research that is honest about what is actually broken.
           </p>
+          <div style={{ background: v.navy, padding: "64px 48px" }}>
           <img
-            src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_hero_1.gif"
+            src="https://lkpbwkuqmxyztmkyrukn.supabase.co/storage/v1/object/public/media/edu_hero_3.png"
             alt="The AI Readiness Gap"
             style={{ width: "100%", objectFit: "contain", objectPosition: "top center", display: "block", marginTop: "auto" }}
           />
+          </div>
         </div>
         <div style={{ background: "#fff", padding: "64px 48px" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: v.blueLight, fontWeight: 500, marginBottom: 20 }}>The Verita Response</div>
@@ -262,11 +264,13 @@ export default function EducationPage() {
               </div>
               <p style={{ fontSize: 14, color: v.textBody, lineHeight: 1.8 }}>{section.problem_body}</p>
               {sectionImages[section.slug] && (
+                <div style={{ background: v.navy, padding: "42px 24px" }}>
                 <img
                   src={sectionImages[section.slug]}
                   alt={section.audience}
-                  style={{ width: "75%", display: "block", borderRadius: 4, marginTop: 32, marginLeft: "auto", marginRight: "auto" }}
+                  style={{ width: "75%", display: "block", borderRadius: 4, marginTop: "auto", marginLeft: "auto", marginRight: "auto" }}
                 />
+                </div>
               )}
             </div>
 
