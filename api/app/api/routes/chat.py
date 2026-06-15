@@ -80,7 +80,7 @@ async def chat_message(request: ChatRequest):
             context = get_full_context()
         # Step 4 — call Claude
         message = anthropic_client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-4-6",
             max_tokens=1024,
             system="""You are the Research AI assistant for The Verita Institute for AI Research and Education. 
             You are helpful, knowledgeable, and represent the institute's values of independence, 
